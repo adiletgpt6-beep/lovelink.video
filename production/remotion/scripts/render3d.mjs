@@ -18,7 +18,7 @@ const browserExecutable = process.env.REMOTION_BROWSER || '/opt/pw-browsers/chro
 const chromiumOptions = { gl: 'swangle' };
 const serveUrl = await bundle({ entryPoint: path.join(root, 'src/index.ts'), webpackOverride: (c) => enableTailwind(c), publicDir: path.join(root, 'public') });
 for (const id of ids) {
-  const composition = await selectComposition({ serveUrl, id, browserExecutable, chromiumOptions });
+  const composition = await selectComposition({ serveUrl, id, browserExecutable, chromiumOptions, timeoutInMilliseconds: 180000 });
   const outputDir = path.join(root, 'public', '3d', id);
   const range = process.env.FRAMES ? process.env.FRAMES.split('-').map(Number) : null;
   if (!range) fs.rmSync(outputDir, { recursive: true, force: true });
@@ -26,7 +26,7 @@ for (const id of ids) {
   const t = Date.now(); let last = -1;
   console.log(`== ${id}: ${composition.durationInFrames} frames -> public/3d/${id}`);
   await renderFrames({
-    composition, serveUrl, outputDir, imageFormat: 'png', browserExecutable, chromiumOptions,
+    composition, serveUrl, outputDir, imageFormat: 'png', browserExecutable, chromiumOptions, timeoutInMilliseconds: 180000,
     concurrency: Number(process.env.CONCURRENCY || 4), inputProps: {}, frameRange: range ?? undefined,
     onStart: () => {}, onFrameUpdate: (n) => { const p = Math.floor((n / composition.durationInFrames) * 10); if (p !== last) { last = p; process.stdout.write(`${p * 10}% `); } },
   });
