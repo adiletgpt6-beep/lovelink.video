@@ -1,6 +1,6 @@
 # lovelink.video — рекламные видео для LoveLink (lovelink.my)
 
-Пять вертикальных рекламных роликов (9:16, 1080×1920, 30 fps, H.264 + AAC, русская озвучка,
+Десять вертикальных рекламных роликов (две волны) (9:16, 1080×1920, 30 fps, H.264 + AAC, русская озвучка,
 синхронные субтитры), собранных в Remotion по реальному дизайну и функциям LoveLink.
 
 | Ролик | Концепция | Файл |
@@ -10,6 +10,11 @@
 | VIDEO-003 | Преимущества «Почему LoveLink» | `videos/VIDEO-003/VIDEO-003.mp4` |
 | VIDEO-004 | История клиента «История Айданы» | `videos/VIDEO-004/VIDEO-004.mp4` |
 | VIDEO-005 | Прямая реклама «Подарок, который открывают» | `videos/VIDEO-005/VIDEO-005.mp4` |
+| VIDEO-006 | Кинематографичная «Букет, который умеет говорить» (для флористов) | `videos/VIDEO-006/VIDEO-006.mp4` |
+| VIDEO-007 | Премиальная 3D motion-graphics «Магия внутри открытки» | `videos/VIDEO-007/VIDEO-007.mp4` |
+| VIDEO-008 | B2B «Ваш цветочный магазин особенный» | `videos/VIDEO-008/VIDEO-008.mp4` |
+| VIDEO-009 | Гипнотическая анимация «Шесть цифр до эмоций» | `videos/VIDEO-009/VIDEO-009.mp4` |
+| VIDEO-010 | Lifestyle «Любой подарок становится личным» | `videos/VIDEO-010/VIDEO-010.mp4` |
 
 В каждой папке `videos/VIDEO-00X/` лежат `script.md` (сценарий, раскадровка, таймкоды) и готовый MP4.
 Исходники монтажа — `production/remotion/` (React/Remotion), озвучка и музыка — `production/remotion/public/audio/`.
@@ -24,7 +29,8 @@ npm install
 # озвучка уже сгенерирована; для перегенерации нужен ELEVENLABS_API_KEY
 # node scripts/tts.mjs --force
 # python3 scripts/music.py          # музыка (numpy)
-node scripts/render.mjs             # все 5 роликов -> ../../videos/*/
+node scripts/render3d.mjs L006-rose L006-bouquet LPetals L007-rose L007-swirl L007-bouquet L008-bouquet L009-swirl L010-roses L010-box L010-choc L010-teddy L010-pendant L010-all  # 3D-слои для VIDEO-006…010 (~1.5 ч на CPU)
+node scripts/render.mjs             # все ролики -> ../../videos/*/
 node scripts/render.mjs VIDEO-002   # один ролик
 npx remotion studio                 # превью в браузере
 ```
