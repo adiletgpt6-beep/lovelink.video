@@ -2,7 +2,7 @@
 # Technical QA for the rendered videos -> production/QA_REPORT.md
 set -uo pipefail
 cd "$(dirname "$0")/../../.."
-REPORT=production/QA_REPORT.md
+REPORT="${QA_REPORT:-production/QA_REPORT.md}"
 {
 echo "# QA отчёт — рекламные видео LoveLink"
 echo
@@ -10,7 +10,8 @@ echo "_Сгенерировано scripts/qa.sh: $(date -u +%Y-%m-%dT%H:%MZ)_"
 echo
 echo "| Ролик | Размер | Длит. | Видео | Аудио | Чёрные кадры | Громкость (LUFS) | True peak |"
 echo "|---|---|---|---|---|---|---|---|"
-for id in VIDEO-001 VIDEO-002 VIDEO-003 VIDEO-004 VIDEO-005; do
+IDS="${*:-VIDEO-001 VIDEO-002 VIDEO-003 VIDEO-004 VIDEO-005}"
+for id in $IDS; do
   f="videos/$id/$id.mp4"
   if [ ! -f "$f" ]; then echo "| $id | — | — | нет файла | | | | |"; continue; fi
   size=$(du -h "$f" | cut -f1)

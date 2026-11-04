@@ -112,8 +112,8 @@ const Build: React.FC = () => {
       <WarmBg phase="night" />
       <Stars count={50} seed={9} />
       <div style={{ position: 'absolute', top: 200, left: 0, right: 0, textAlign: 'center' }}><Chip start={0} dark fontSize={32}>🌙 вечером · lovelink.my</Chip></div>
-      <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'flex-start', paddingTop: 300, transform: `translateY(${(1 - rise) * 800}px)` }}>
-        <PhoneFrame scale={1.3} statusColor={f < toEditor ? '#111' : '#fff'} glow="rgba(120,80,240,0.35)">
+      <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'flex-start', paddingTop: 290, transform: `translateY(${(1 - rise) * 800}px)` }}>
+        <PhoneFrame scale={1.2} statusColor={f < toEditor ? '#111' : '#fff'} glow="rgba(120,80,240,0.35)">
           {f < toEditor ? (
             <HomeScreen highlightIndex={1} highlightAmt={hl} pressedIndex={1} pressedAmt={pressed} />
           ) : (
@@ -173,8 +173,8 @@ const Morning: React.FC = () => {
       <WarmBg phase="morning" />
       <Bokeh count={10} colors={['#fff', '#ffe0cc']} opacity={0.3} blur={20} />
       <div style={{ position: 'absolute', top: 200, left: 0, right: 0, textAlign: 'center' }}><Chip start={0} fontSize={32}>☀️ утром · телефон мамы</Chip></div>
-      <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'flex-start', paddingTop: 300, transform: `translateY(${(1 - rise) * 800}px) scale(${1 + big * 0.06})`, transformOrigin: '50% 35%' }}>
-        <PhoneFrame scale={1.3} statusColor="#fff" glow="rgba(248,72,136,0.3)">
+      <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'flex-start', paddingTop: 290, transform: `translateY(${(1 - rise) * 800}px) scale(${1 + big * 0.06})`, transformOrigin: '50% 35%' }}>
+        <PhoneFrame scale={1.2} statusColor="#fff" glow="rgba(248,72,136,0.3)">
           <PinLockScreen filled={filled} state={f >= successAt ? 'success' : 'locked'} pressedKey={pressIdx >= 0 && pressIdx < 6 ? ['4', '8', '2', '9', '1', '3'][pressIdx] : null} pressAmt={pressAmt} successProgress={prog(f, successAt, 14)} giftIcon="🌸" giftTitle="Мама, спасибо вам за всё 🤍" giftText={<>С днём рождения! Я собрала для вас страницу: видео, наши фото и пять причин, за которые я благодарна.</>} />
         </PhoneFrame>
       </AbsoluteFill>
