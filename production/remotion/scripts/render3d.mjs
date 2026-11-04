@@ -2,6 +2,7 @@
 // using the swangle GL renderer (WebGL works there). The main 2D compositions then load the
 // frames as images, so they keep the fast swiftshader renderer.
 // usage: node scripts/render3d.mjs <CompositionId> [<CompositionId> ...]   (env CONCURRENCY=4)
+// env FRAMES="a-b" re-renders only that inclusive frame range into the existing directory.
 import path from 'node:path';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -19,13 +20,14 @@ const serveUrl = await bundle({ entryPoint: path.join(root, 'src/index.ts'), web
 for (const id of ids) {
   const composition = await selectComposition({ serveUrl, id, browserExecutable, chromiumOptions });
   const outputDir = path.join(root, 'public', '3d', id);
-  fs.rmSync(outputDir, { recursive: true, force: true });
+  const range = process.env.FRAMES ? process.env.FRAMES.split('-').map(Number) : null;
+  if (!range) fs.rmSync(outputDir, { recursive: true, force: true });
   fs.mkdirSync(outputDir, { recursive: true });
   const t = Date.now(); let last = -1;
   console.log(`== ${id}: ${composition.durationInFrames} frames -> public/3d/${id}`);
   await renderFrames({
     composition, serveUrl, outputDir, imageFormat: 'png', browserExecutable, chromiumOptions,
-    concurrency: Number(process.env.CONCURRENCY || 4), inputProps: {},
+    concurrency: Number(process.env.CONCURRENCY || 4), inputProps: {}, frameRange: range ?? undefined,
     onStart: () => {}, onFrameUpdate: (n) => { const p = Math.floor((n / composition.durationInFrames) * 10); if (p !== last) { last = p; process.stdout.write(`${p * 10}% `); } },
   });
   fs.writeFileSync(path.join(outputDir, 'meta.json'), JSON.stringify({ id, frames: composition.durationInFrames, renderedAt: new Date().toISOString() }));
