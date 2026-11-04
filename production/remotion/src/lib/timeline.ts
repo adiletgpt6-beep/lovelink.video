@@ -39,7 +39,8 @@ export function normalizeWords(words: Word[]): Word[] {
       i += 2;
       continue;
     }
-    out.push(w);
+    // the aligner glues a following em dash to the word («цифр—»); captions show «цифр —»
+    out.push(/[^\s—]—$/.test(w.text) ? { ...w, text: w.text.replace(/—$/, ' —') } : w);
   }
   return out;
 }
