@@ -3,3 +3,4 @@ production/remotion/out/
 production/remotion/.remotion/
 *.log
 .DS_Store
+public/3d/

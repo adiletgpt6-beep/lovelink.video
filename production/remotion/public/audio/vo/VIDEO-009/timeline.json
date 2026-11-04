@@ -1,0 +1,199 @@
+{
+ "videoId": "VIDEO-009",
+ "title": "Шесть цифр до эмоций",
+ "voice": "Matilda",
+ "model": "eleven_v3",
+ "segments": [
+  {
+   "id": "s01",
+   "text": "Шесть цифр.",
+   "file": "audio/vo/VIDEO-009/s01.mp3",
+   "duration": 1.48898,
+   "words": [
+    {
+     "text": "Шесть",
+     "start": 0,
+     "end": 0.4
+    },
+    {
+     "text": "цифр.",
+     "start": 0.48,
+     "end": 0.96
+    }
+   ]
+  },
+  {
+   "id": "s02",
+   "text": "Каждая — шаг к тому, что спрятано за открыткой.",
+   "file": "audio/vo/VIDEO-009/s02.mp3",
+   "duration": 3.082449,
+   "words": [
+    {
+     "text": "Каждая—",
+     "start": 0,
+     "end": 0.8
+    },
+    {
+     "text": "шаг",
+     "start": 0.86,
+     "end": 1.04
+    },
+    {
+     "text": "к",
+     "start": 1.08,
+     "end": 1.12
+    },
+    {
+     "text": "тому,",
+     "start": 1.184,
+     "end": 1.52
+    },
+    {
+     "text": "что",
+     "start": 1.56,
+     "end": 1.68
+    },
+    {
+     "text": "спрятано",
+     "start": 1.733,
+     "end": 2.24
+    },
+    {
+     "text": "за",
+     "start": 2.267,
+     "end": 2.32
+    },
+    {
+     "text": "открыткой.",
+     "start": 2.377,
+     "end": 3.04
+    }
+   ]
+  },
+  {
+   "id": "s03",
+   "text": "Отсканируй QR. Введи код.",
+   "file": "audio/vo/VIDEO-009/s03.mp3",
+   "duration": 2.35102,
+   "words": [
+    {
+     "text": "Отсканируй",
+     "start": 0,
+     "end": 0.8
+    },
+    {
+     "text": "QR.",
+     "start": 0.88,
+     "end": 1.28
+    },
+    {
+     "text": "Введи",
+     "start": 1.4,
+     "end": 1.88
+    },
+    {
+     "text": "код.",
+     "start": 1.93,
+     "end": 2.4
+    }
+   ]
+  },
+  {
+   "id": "s04",
+   "text": "И послание раскроется: видео, фото, слова.",
+   "file": "audio/vo/VIDEO-009/s04.mp3",
+   "duration": 3.395918,
+   "words": [
+    {
+     "text": "И",
+     "start": 0,
+     "end": 0.08
+    },
+    {
+     "text": "послание",
+     "start": 0.144,
+     "end": 0.64
+    },
+    {
+     "text": "раскроется:",
+     "start": 0.688,
+     "end": 1.36
+    },
+    {
+     "text": "видео,",
+     "start": 1.504,
+     "end": 2.24
+    },
+    {
+     "text": "фото,",
+     "start": 2.32,
+     "end": 2.72
+    },
+    {
+     "text": "слова.",
+     "start": 2.8,
+     "end": 3.36
+    }
+   ]
+  },
+  {
+   "id": "s05",
+   "text": "Всего шесть цифр. И столько чувств. LoveLink — lovelink точка my.",
+   "file": "audio/vo/VIDEO-009/s05.mp3",
+   "duration": 5.955918,
+   "words": [
+    {
+     "text": "Всего",
+     "start": 0,
+     "end": 0.32
+    },
+    {
+     "text": "шесть",
+     "start": 0.44,
+     "end": 0.72
+    },
+    {
+     "text": "цифр.",
+     "start": 0.76,
+     "end": 1.2
+    },
+    {
+     "text": "И",
+     "start": 1.48,
+     "end": 1.76
+    },
+    {
+     "text": "столько",
+     "start": 1.813,
+     "end": 2.16
+    },
+    {
+     "text": "чувств.",
+     "start": 2.229,
+     "end": 3.12
+    },
+    {
+     "text": "LoveLink—",
+     "start": 3.216,
+     "end": 4.4
+    },
+    {
+     "text": "lovelink",
+     "start": 4.453,
+     "end": 4.96
+    },
+    {
+     "text": "точка",
+     "start": 5.04,
+     "end": 5.36
+    },
+    {
+     "text": "my.",
+     "start": 5.493,
+     "end": 5.92
+    }
+   ]
+  }
+ ],
+ "totalSpeech": 16.274285
+}

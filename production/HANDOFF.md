@@ -124,3 +124,33 @@ Chromium: `REMOTION_BROWSER` (по умолчанию `/opt/pw-browsers/chromium
 * Заменить генеративные «фото» (ArtPhoto) на лицензированные фото/видео клиентов.
 * При наличии доступа к сайту — реальные записи экранов (п. 5).
 * Проверить ролики на реальных устройствах в интерфейсах Reels/TikTok.
+
+
+---
+
+## 8. Волна 2 — VIDEO-006…010: что добавлено и как с этим работать
+
+**Позиционирование:** B2B для цветочных магазинов и продавцов подарков: к товару добавляется физическая открытка
+LoveLink с QR-кодом (ведёт на `password.lovelink.my`) и **шестизначным** секретным кодом; получатель сканирует QR,
+вводит 6 цифр и видит персональное послание (видео, фото, текст — других типов контента в продукте нет).
+
+**Новые модули**
+* `src/ui/Postcard.tsx` — физическая открытка (3 варианта: ivory / blush / night), реальный QR
+  (`public/brand/qr-password.png|svg`, генератор — `qrcode`, URL `https://password.lovelink.my`), шесть ячеек кода,
+  параметры `revealed`, `rotX/rotY`, `sweep`, `glow`.
+* `src/ui/Scan.tsx` — экран камеры телефона с распознаванием QR.
+* `src/three/*` — процедурные 3D-объекты (`Rose`, `Bouquet` с параметром `assemble`, `PetalRain`, `Sparkles`,
+  `GiftBox`, `Chocolate`, `Teddy`, `Pendant`), `Layers.tsx` — прозрачные слои-композиции (`L006-rose`, …).
+* `scripts/render3d.mjs` — рендер слоёв в PNG-последовательности `public/3d/<id>/element-N.png` (gitignored,
+  ~1.1 с/кадр при concurrency 4 на swangle). `src/ui/Layer3D.tsx` показывает кадры слоя в 2D-композиции.
+  **Перед рендером VIDEO-006…010 слои должны быть отрендерены:** `node scripts/render3d.mjs $(node -e "console.log(require('./src/three/Layers.tsx'))" )` → проще: `node scripts/render3d.mjs L006-rose L006-bouquet LPetals L007-rose L007-swirl L007-bouquet L008-bouquet L009-swirl L010-roses L010-box L010-choc L010-teddy L010-pendant L010-all`.
+* WebGL не работает в рендерере `swiftshader`, поэтому 3D слои рендерятся отдельно с `gl: swangle`, а основные
+  композиции — быстрым `swiftshader`.
+* Новые тексты подарков в `src/lib/content.ts`: `wifeGift`, `friendGift`, `clientGift`.
+* Музыка: `python3 scripts/music.py --new` (треки 006–010), `--all` — все десять.
+
+**Как улучшить дальше (если появятся ресурсы)**
+* Съёмка/сток с людьми (флорист, получательница) — заменить сцены S3/S4 в VIDEO-006 и S2 в VIDEO-008 на реальные
+  кадры (`<OffthreadVideo>`), остальная структура сохраняется.
+* Фотореалистичные розы: подключить glTF-модели (CC0) в `Bouquet.tsx` вместо процедурных лепестков.
+* Печать открытки: макет открытки можно экспортировать из `Postcard.tsx` (600×400 логических px, 3:2).

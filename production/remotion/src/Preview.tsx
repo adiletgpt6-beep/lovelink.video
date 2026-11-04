@@ -13,9 +13,10 @@ import { GiftsCabinetScreen } from './screens/GiftsCabinet';
 import { PricingScreen } from './screens/PricingScreen';
 import { loveGift, momGift } from './lib/content';
 import { Captions } from './ui/Captions';
+import { Postcard } from './ui/Postcard';
 import { TL001 } from './lib/timelines';
 
-export type PreviewScreen = 'home' | 'templates' | 'pin' | 'pinSuccess' | 'viewer' | 'viewer3' | 'viewer4' | 'editor' | 'publish' | 'cabinet' | 'pricing';
+export type PreviewScreen = 'postcard' | 'home' | 'templates' | 'pin' | 'pinSuccess' | 'viewer' | 'viewer3' | 'viewer4' | 'editor' | 'publish' | 'cabinet' | 'pricing';
 
 export const Preview: React.FC<{ screen: PreviewScreen }> = ({ screen }) => {
   useFontsReady();
@@ -23,6 +24,7 @@ export const Preview: React.FC<{ screen: PreviewScreen }> = ({ screen }) => {
   const dark = ['pin', 'pinSuccess', 'viewer', 'viewer3', 'viewer4', 'editor', 'publish'].includes(screen);
   const content = (() => {
     switch (screen) {
+      case 'postcard': return null;
       case 'home': return <HomeScreen highlightIndex={1} highlightAmt={1} />;
       case 'templates': return <TemplatesPageScreen sheetOpen={1} activeChip={3} />;
       case 'pin': return <PinLockScreen filled={4} pressedKey="9" pressAmt={0.5} />;
@@ -40,7 +42,8 @@ export const Preview: React.FC<{ screen: PreviewScreen }> = ({ screen }) => {
   return (
     <AbsoluteFill>
       {dark ? <AuroraBg /> : <LightBg />}
-      <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center' }}>
+      {screen === 'postcard' && <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', gap: 60 }}><div style={{ transform: 'scale(1.5)' }}><Postcard revealed={1} rotX={8} rotY={-12} sweep={0.5} /></div><div style={{ transform: 'scale(1.2)' }}><Postcard variant="night" revealed={0.5} rotX={-6} rotY={10} /></div></AbsoluteFill>}
+      <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', display: screen === 'postcard' ? 'none' : 'flex' }}>
         <PhoneFrame scale={1.75} statusColor={dark || ['viewer', 'editor'].includes(screen) ? '#fff' : '#111'}>{content}</PhoneFrame>
       </AbsoluteFill>
       <Captions timeline={tl} variant="pill" />

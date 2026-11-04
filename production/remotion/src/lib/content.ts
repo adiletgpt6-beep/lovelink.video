@@ -74,3 +74,36 @@ export const QR_STYLES = [
 ];
 
 export const DEMO_GIFT = { code: '482913', editCode: 'A7KQ2M', url: 'view.lovelink.my/g/8f3a2c1e', title: '🌸 Для мамы', date: '4 ноября 2026' };
+
+/** Gift for a friend (VIDEO-010). */
+export const friendGift: GiftContent = {
+  heroVariant: 'ocean', firstVariant: 'ocean', secondVariant: 'gold', thirdVariant: 'garden',
+  icon: '🎉', title: 'С днём рождения, Дан!',
+  words: ['За то, что всегда рядом', 'За наши поездки', 'За честность', 'За смех до слёз', 'За десять лет дружбы'],
+  button: '👆 Нажми — продолжим',
+  reactions: [{ emoji: '😎', text: 'Ты лучший.' }, { emoji: '🔥', text: 'Жжёшь!' }, { emoji: '🤝', text: 'Всегда вместе.' }, { emoji: '🎂', text: 'С днём рождения!' }, { emoji: '🙌', text: 'Горжусь.' }],
+  center: { icon: '🎁', text: 'Это тебе.' }, caption: 'Нажми на эмоцию — и я отвечу',
+  last: { firstText: 'Дружба —', emoji: '🤝', thirdText: 'это навсегда.' },
+};
+
+/** Gift from a business to a client (VIDEO-010, VIDEO-008). */
+export const clientGift: GiftContent = {
+  heroVariant: 'gold', firstVariant: 'lavender', secondVariant: 'rose', thirdVariant: 'gold',
+  icon: '🤍', title: 'Спасибо, что вы с нами',
+  words: ['За доверие', 'За тёплые отзывы', 'За то, что возвращаетесь', 'За рекомендации друзьям', 'За целый год вместе'],
+  button: '👆 Нажми — продолжим',
+  reactions: [{ emoji: '😊', text: 'Вы — наш любимый клиент.' }, { emoji: '✨', text: 'Спасибо!' }, { emoji: '💐', text: 'Ждём вас снова.' }, { emoji: '🤍', text: 'С любовью, команда.' }, { emoji: '🎁', text: 'Сюрприз внутри.' }],
+  center: { icon: '💐', text: 'Благодарим вас.' }, caption: 'Нажми на эмоцию 🤍',
+  last: { firstText: 'Спасибо,', emoji: '🤍', thirdText: 'что выбираете нас.' },
+};
+
+/** Anniversary gift for a wife (VIDEO-006). */
+export const wifeGift: GiftContent = {
+  heroVariant: 'sunset', firstVariant: 'peach', secondVariant: 'rose', thirdVariant: 'lavender',
+  icon: '💌', title: 'Семь лет — и я всё так же влюблён',
+  words: ['В твой смех по утрам', 'В то, как ты держишь мою руку', 'В наши разговоры до ночи', 'В твоё терпение', 'В тебя — целиком'],
+  button: '👆 Нажми — продолжим',
+  reactions: [{ emoji: '😊', text: 'Ты моя любимая.' }, { emoji: '😌', text: 'С тобой спокойно.' }, { emoji: '✨', text: 'Ты — моё чудо.' }, { emoji: '🤍', text: 'Люблю тебя.' }, { emoji: '🌹', text: 'С годовщиной!' }],
+  center: { icon: '💍', text: 'Навсегда.' }, caption: 'Нажми на эмоцию — и я отвечу 🤍',
+  last: { firstText: 'Семь лет.', emoji: '🤍', thirdText: 'И это только начало.' },
+};

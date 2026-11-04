@@ -11,7 +11,7 @@ import math, os, subprocess, sys, wave, struct
 import numpy as np
 
 SR = 44100
-OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), '..', 'public', 'audio', 'music')
+OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else os.path.join(os.path.dirname(__file__), '..', 'public', 'audio', 'music')
 os.makedirs(OUT, exist_ok=True)
 rng = np.random.default_rng(7)
 
@@ -343,5 +343,169 @@ def track_ad(length=50.0):
     L = reverb(L, 0.45, 0.12); R = reverb(R, 0.45, 0.12)
     finalize('VIDEO-005-music', L, R, 0.55)
 
+
+
+# ---------------------------------------------------------------- tracks for VIDEO-006..010
+
+def strings(f, dur, vel=1.0):
+    """Soft string-like pad: detuned saws, slow attack, low-passed."""
+    n = int(dur * SR)
+    out = (osc(f, n, 'saw', -0.006) + osc(f, n, 'saw', 0.006) + osc(f * 2, n, 'saw', 0.003) * 0.3) / 2.3
+    out = lowpass_fast(out, 1400)
+    out *= adsr(n, min(0.9, dur * 0.35), 0.4, 0.85, min(1.5, dur * 0.4))
+    return out * vel * 0.3
+
+def clap(vel=1.0):
+    n = int(0.18 * SR)
+    noise = rng.standard_normal(n)
+    X = np.fft.rfft(noise); fr = np.fft.rfftfreq(n, 1 / SR)
+    X[fr < 900] *= 0.2; X[fr > 7000] *= 0.4
+    noise = np.fft.irfft(X, n=n)
+    env = np.zeros(n)
+    for k, off in enumerate([0, 0.012, 0.024]):
+        i = int(off * SR); env[i:] += np.exp(-np.arange(n - i) / SR * 40) * (1 - k * 0.2)
+    return noise * env * vel * 0.5
+
+def track_bouquet(length=50.0):
+    """VIDEO-006: cinematic, tender - piano + strings swell, 72 BPM, F major."""
+    bpm = 72; beat = 60 / bpm; bar = beat * 4
+    n = int(length * SR); L = np.zeros(n); R = np.zeros(n)
+    prog = [('F3', 'maj7'), ('D3', 'min7'), ('A#2', 'maj7'), ('C3', 'maj')]
+    t = 0.0; i = 0
+    while t < length:
+        root, kind = prog[i % 4]; notes = chord_notes(root, kind)
+        swell = min(1.0, 0.45 + i * 0.08)
+        place(L, strings(notes[0], bar * 1.1, swell), t); place(R, strings(notes[1], bar * 1.1, swell), t + 0.02)
+        place(R, strings(notes[2] * 2, bar * 1.1, swell * 0.6), t); place(L, strings(notes[3 % len(notes)] * 2, bar * 1.1, swell * 0.5), t + 0.03)
+        for k in range(8):
+            nt = notes[(k * 3) % len(notes)] * (2 if k % 2 else 1) * 2
+            vel = 0.5 + 0.3 * (k % 4 == 0) + rng.uniform(-0.05, 0.05)
+            s = piano(nt, beat * 1.5, vel)
+            at = t + k * beat / 2 + rng.uniform(0, 0.01)
+            place(L, s * (0.9 if k % 2 == 0 else 0.55), at); place(R, s * (0.55 if k % 2 == 0 else 0.9), at)
+        if i >= 2 and i % 2 == 0:
+            b = bell(notes[2] * 4, 2.2, 0.35); place(R, b, t + beat * 3); place(L, b * 0.7, t + beat * 3 + 0.01)
+        place(L, bass(freq(root) / 2, bar * 0.95, 0.45), t); place(R, bass(freq(root) / 2, bar * 0.95, 0.45), t)
+        t += bar; i += 1
+    L = reverb(L, 1.3, 0.36); R = reverb(R, 1.3, 0.36)
+    finalize('VIDEO-006-music', L, R, 0.45)
+
+def track_premium(length=42.0):
+    """VIDEO-007: luxurious ambient - deep sub pulse, glassy bells, slow string rise, 60 BPM, D minor."""
+    bpm = 60; beat = 60 / bpm; bar = beat * 4
+    n = int(length * SR); L = np.zeros(n); R = np.zeros(n)
+    prog = [('D2', 'min9'), ('A#2', 'maj7'), ('F2', 'maj7'), ('C3', 'maj')]
+    t = 0.0; i = 0
+    while t < length:
+        root, kind = prog[i % 4]; notes = chord_notes(root, kind)
+        lvl = min(1.0, 0.35 + i * 0.1)
+        place(L, strings(notes[0] * 2, bar * 1.2, lvl), t); place(R, strings(notes[2] * 2, bar * 1.2, lvl), t + 0.03)
+        place(L, pad(notes[1] * 2, bar * 1.2, lvl * 0.5, 500), t); place(R, pad(notes[3 % len(notes)] * 2, bar * 1.2, lvl * 0.5, 480), t)
+        for k in range(4):
+            place(L, bass(freq(root), beat * 0.9, 0.5), t + k * beat); place(R, bass(freq(root), beat * 0.9, 0.5), t + k * beat)
+        for k in range(3):
+            nt = notes[(k + i) % len(notes)] * 8
+            b = bell(nt, 3.0, 0.22 + 0.08 * (k == 0))
+            at = t + k * beat * 1.33 + rng.uniform(0, 0.05)
+            place(L if k % 2 else R, b, at); place(R if k % 2 else L, b * 0.6, at + 0.012)
+        if i >= 3:
+            place(L, shaker(0.18), t + beat * 2); place(R, shaker(0.18), t + beat * 3.5)
+        t += bar; i += 1
+    L = reverb(L, 1.8, 0.4); R = reverb(R, 1.8, 0.4)
+    finalize('VIDEO-007-music', L, R, 0.45)
+
+def track_b2b(length=48.0):
+    """VIDEO-008: bright corporate pop - claps, bright plucks, driving bass, 118 BPM, G major."""
+    bpm = 118; beat = 60 / bpm; bar = beat * 4
+    n = int(length * SR); L = np.zeros(n); R = np.zeros(n)
+    prog = [('G3', 'add9'), ('E3', 'min7'), ('C3', 'maj7'), ('D3', 'sus2')]
+    t = 0.0; i = 0
+    while t < length:
+        root, kind = prog[i % 4]; notes = chord_notes(root, kind)
+        place(L, pad(notes[0], bar, 0.4, 1600), t); place(R, pad(notes[2], bar, 0.4, 1500), t)
+        for k in range(16):
+            if k % 4 != 2:
+                nt = notes[(k // 2) % len(notes)] * (2 if k % 8 >= 4 else 1) * 2
+                s = pluck(nt, beat * 0.45, 0.55 + 0.25 * (k % 4 == 0))
+                place(L if k % 2 else R, s, t + k * beat / 4); place(R if k % 2 else L, s * 0.5, t + k * beat / 4)
+        for k in range(4):
+            place(L, kick(0.3, 0.9), t + k * beat); place(R, kick(0.3, 0.9), t + k * beat)
+            place(L, hat(0.05, 0.6), t + k * beat + beat / 2); place(R, hat(0.05, 0.6), t + k * beat + beat / 2)
+            if k in (1, 3):
+                place(L, clap(0.7), t + k * beat); place(R, clap(0.7), t + k * beat + 0.004)
+        bf = freq(root) / 2
+        for k in range(8):
+            place(L, bass(bf * (2 if k == 7 else 1), beat * 0.4, 0.6), t + k * beat / 2); place(R, bass(bf * (2 if k == 7 else 1), beat * 0.4, 0.6), t + k * beat / 2)
+        if i >= 2:
+            for k in range(4):
+                b = bell(notes[(k + 1) % 3] * 4, beat, 0.3); place(R if k % 2 else L, b, t + k * beat + beat / 2)
+        t += bar; i += 1
+    L = reverb(L, 0.5, 0.15); R = reverb(R, 0.5, 0.15)
+    finalize('VIDEO-008-music', L, R, 0.55)
+
+def track_hypnotic(length=42.0):
+    """VIDEO-009: hypnotic pulsing arpeggio - six-note motif, side-chain pump, 110 BPM, E minor."""
+    bpm = 110; beat = 60 / bpm; bar = beat * 4
+    n = int(length * SR); L = np.zeros(n); R = np.zeros(n)
+    motif = ['E4', 'G4', 'B4', 'D5', 'B4', 'G4']  # six notes = six digits
+    prog = [('E2', 'min9'), ('C2', 'maj7'), ('G2', 'maj'), ('D2', 'sus2')]
+    t = 0.0; i = 0
+    step = beat / 2
+    while t < length:
+        root, kind = prog[i % 4]; notes = chord_notes(root, kind)
+        place(L, pad(notes[0] * 2, bar * 1.05, 0.55, 700), t); place(R, pad(notes[1] * 2, bar * 1.05, 0.55, 680), t)
+        for k in range(8):
+            nt = freq(motif[k % 6]) * (0.5 if i % 4 == 1 else 1)
+            s = pluck(nt, step * 0.9, 0.5 + 0.2 * (k % 6 == 0))
+            s += osc(nt * 2, len(s), 'sine') * np.exp(-np.arange(len(s)) / SR * 8) * 0.15
+            place(L if k % 2 else R, s, t + k * step); place(R if k % 2 else L, s * 0.6, t + k * step + 0.01)
+        for k in range(4):
+            place(L, kick(0.34, 0.9), t + k * beat); place(R, kick(0.34, 0.9), t + k * beat)
+        for k in range(8):
+            place(R if k % 2 else L, hat(0.03, 0.3 + 0.2 * (k % 2)), t + k * beat / 2 + beat / 4)
+        bf = freq(root)
+        for k in range(8):
+            place(L, bass(bf, beat * 0.42, 0.55), t + k * beat / 2); place(R, bass(bf, beat * 0.42, 0.55), t + k * beat / 2)
+        t += bar; i += 1
+    env = np.ones(n); kb = int(beat * SR)
+    for s0 in range(0, n, kb):
+        seg = np.arange(min(kb, n - s0)); env[s0:s0 + len(seg)] = 1 - 0.45 * np.exp(-seg / SR * 9)
+    L *= env; R *= env
+    L = reverb(L, 1.0, 0.28); R = reverb(R, 1.0, 0.28)
+    finalize('VIDEO-009-music', L, R, 0.5)
+
+def track_lifestyle(length=46.0):
+    """VIDEO-010: upbeat lifestyle funk-pop - syncopated bass, claps, bright chords, 122 BPM, A major."""
+    bpm = 122; beat = 60 / bpm; bar = beat * 4
+    n = int(length * SR); L = np.zeros(n); R = np.zeros(n)
+    prog = [('A3', 'maj7'), ('F#3', 'min7'), ('D3', 'maj7'), ('E3', 'maj')]
+    t = 0.0; i = 0
+    while t < length:
+        root, kind = prog[i % 4]; notes = chord_notes(root, kind)
+        for k in [0, 1.5, 2, 3.5]:
+            chord = sum(pluck(nn * 2, beat * 0.4, 0.45) for nn in notes[:3])
+            place(L, chord, t + k * beat); place(R, chord * 0.9, t + k * beat + 0.003)
+        for k in range(4):
+            place(L, kick(0.3, 1.0), t + k * beat); place(R, kick(0.3, 1.0), t + k * beat)
+            if k in (1, 3):
+                place(L, clap(0.8), t + k * beat); place(R, clap(0.8), t + k * beat + 0.004)
+        for k in range(16):
+            place(R if k % 2 else L, hat(0.03, 0.22 + 0.25 * (k % 4 == 2)), t + k * beat / 4)
+        bf = freq(root) / 2
+        for k, off in enumerate([0, 0.75, 1.5, 2, 2.75, 3.5]):
+            place(L, bass(bf * (2 if k == 4 else 1), beat * 0.35, 0.65), t + off * beat); place(R, bass(bf * (2 if k == 4 else 1), beat * 0.35, 0.65), t + off * beat)
+        if i >= 1:
+            for k in range(4):
+                b = bell(notes[(k + i) % 3] * 4, beat * 0.8, 0.28); place(L if k % 2 else R, b, t + k * beat + beat * 0.5)
+        t += bar; i += 1
+    L = reverb(L, 0.45, 0.12); R = reverb(R, 0.45, 0.12)
+    finalize('VIDEO-010-music', L, R, 0.55)
+
 if __name__ == '__main__':
-    track_emotional(); track_demo(); track_dynamic(); track_story(); track_ad()
+    if '--new' in sys.argv:
+        track_bouquet(); track_premium(); track_b2b(); track_hypnotic(); track_lifestyle()
+    elif '--all' in sys.argv:
+        track_emotional(); track_demo(); track_dynamic(); track_story(); track_ad()
+        track_bouquet(); track_premium(); track_b2b(); track_hypnotic(); track_lifestyle()
+    else:
+        track_emotional(); track_demo(); track_dynamic(); track_story(); track_ad()
