@@ -1,0 +1,41 @@
+{
+ "id": "s06",
+ "text": "Скажите это красиво. LoveLink — lovelink точка my.",
+ "words": [
+  {
+   "text": "Скажите",
+   "start": 0,
+   "end": 0.32
+  },
+  {
+   "text": "это",
+   "start": 0.38,
+   "end": 0.56
+  },
+  {
+   "text": "красиво.",
+   "start": 0.617,
+   "end": 1.12
+  },
+  {
+   "text": "LoveLink—",
+   "start": 1.28,
+   "end": 2.56
+  },
+  {
+   "text": "lovelink",
+   "start": 2.64,
+   "end": 3.28
+  },
+  {
+   "text": "точка",
+   "start": 3.36,
+   "end": 3.68
+  },
+  {
+   "text": "my.",
+   "start": 3.813,
+   "end": 4.24
+  }
+ ]
+}

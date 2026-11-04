@@ -1,0 +1,5 @@
+node_modules/
+production/remotion/out/
+production/remotion/.remotion/
+*.log
+.DS_Store

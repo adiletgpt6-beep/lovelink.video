@@ -1,0 +1,29 @@
+{
+  "name": "lovelink-ads-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion project that renders the five LoveLink advertising videos (9:16, 1080x1920, 30 fps).",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "node scripts/render.mjs",
+    "tts": "node scripts/tts.mjs",
+    "music": "python3 scripts/music.py"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.540",
+    "@remotion/cli": "4.0.540",
+    "@remotion/fonts": "^4.0.540",
+    "@remotion/renderer": "4.0.540",
+    "@remotion/tailwind-v4": "4.0.540",
+    "@tailwindcss/postcss": "^4.1.13",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "remotion": "4.0.540",
+    "tailwindcss": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.9.2"
+  }
+}

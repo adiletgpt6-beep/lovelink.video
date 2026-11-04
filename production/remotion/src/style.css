@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+:root {
+  --ll-pink: #F84888;
+  --ll-violet: #7850F0;
+  --ll-night: #060715;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; -webkit-font-smoothing: antialiased; }
+
+.font-ui { font-family: Inter, 'Manrope', Arial, sans-serif; }
+.font-display { font-family: 'Playfair Display', Georgia, serif; }
+.font-bold-display { font-family: 'Unbounded', 'Manrope', sans-serif; }
+.font-caption { font-family: 'Manrope', Inter, sans-serif; }
+.font-serif-soft { font-family: 'Cormorant Garamond', Georgia, serif; }
