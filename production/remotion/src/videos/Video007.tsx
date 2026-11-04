@@ -57,8 +57,9 @@ const Magic: React.FC = () => {
   const cardIn = springIn(f, 30, tCard, { damping: 14, stiffness: 70 });
   // camera pushes towards the QR after the card settles
   const push = prog(f, tQr - 4, 40);
-  const cardScale = 1.3 + push * 0.55;
-  const cardX = 540 - push * 150; const cardY = 760 - push * 40;
+  // keep the whole card (QR + six cells) inside the frame while pushing in
+  const cardScale = 1.3 + push * 0.3;
+  const cardX = 540; const cardY = 700 - push * 60;
   const phoneIn = springIn(f, 30, tPage - 4, { damping: 16, stiffness: 80 });
   const step = 6;
   const filled = f < tSix ? 0 : Math.min(6, Math.floor((f - tSix) / step) + 1);
@@ -74,8 +75,8 @@ const Magic: React.FC = () => {
       </div>
       {/* QR focus ring */}
       <div style={{ position: 'absolute', left: cardX - 300 * (cardScale / 1.3) * 0.68 + 90, top: cardY - 95, width: 0, height: 0, opacity: 0 }} />
-      <div style={{ position: 'absolute', right: 60, top: 1000, transform: `translateY(${(1 - phoneIn) * 900}px) rotate(${(1 - phoneIn) * 10}deg)`, opacity: phoneIn }}>
-        <PhoneFrame scale={0.72} statusColor="#fff" glow="rgba(233,196,106,0.25)">
+      <div style={{ position: 'absolute', right: 60, top: 900, transform: `translateY(${(1 - phoneIn) * 900}px) rotate(${(1 - phoneIn) * 10}deg)`, opacity: phoneIn }}>
+        <PhoneFrame scale={0.68} statusColor="#fff" glow="rgba(233,196,106,0.25)">
           <PinLockScreen filled={filled} pressedKey={pressIdx >= 0 && pressIdx < 6 ? ['4', '8', '2', '9', '1', '3'][pressIdx] : null} pressAmt={pressAmt} />
         </PhoneFrame>
       </div>
@@ -112,7 +113,7 @@ const Finale: React.FC = () => {
   return (
     <AbsoluteFill>
       <VelvetBg />
-      <Layer3D id="L007-bouquet" style={{ transform: 'translateY(200px)' }} />
+      <Layer3D id="L007-bouquet" offset={15} speed={0.9} style={{ transform: 'translateY(200px)' }} />
       <div style={{ position: 'absolute', top: 230, left: 0, right: 0, padding: '0 80px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22 }}>
         <GoldLine />
         <BigText text="Маленькая открытка. Большие эмоции." starts={wordStarts(S3).slice(0, 4)} fontSize={78} weight={600} color="#fff3e6" lineHeight={1.15} accentWords={['Большие', 'эмоции']} accentColor="#e9c46a" />
@@ -135,7 +136,7 @@ export const Video007: React.FC = () => {
       <SceneSeq scene={S1}><Magic /></SceneSeq>
       <SceneSeq scene={S2}><Open /></SceneSeq>
       <SceneSeq scene={S3} overlap={30}><Finale /></SceneSeq>
-      <Captions timeline={tl} variant="clean" bottom={470} fontSize={48} accent="#e9c46a" hideScenes={[0, 3]} fontFamily={font.display} fontWeight={600} />
+      <Captions timeline={tl} variant="clean" bottom={300} fontSize={48} accent="#e9c46a" hideScenes={[0, 3]} fontFamily={font.display} fontWeight={600} />
     </AbsoluteFill>
   );
 };

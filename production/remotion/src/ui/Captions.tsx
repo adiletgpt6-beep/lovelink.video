@@ -64,7 +64,7 @@ export const Captions: React.FC<Props> = ({ timeline, variant = 'pill', bottom =
   const appear = Math.min(1, (frame - chunk.start) / 5);
   const base: React.CSSProperties = {
     position: 'absolute', left: '50%', bottom, transform: `translateX(-50%) translateY(${(1 - appear) * 14}px)`, width, maxWidth: '86%',
-    display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 0.28em', textAlign: 'center', opacity: appear,
+    display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 0.32em', textAlign: 'center', opacity: appear,
     fontFamily: fontFamily ?? (variant === 'serif' ? font.display : font.caption), fontWeight: fontWeight ?? (variant === 'serif' ? 600 : 800), fontSize, lineHeight: 1.18, color, letterSpacing: variant === 'boxed' ? 0.5 : -0.5,
     textTransform: uppercase ? 'uppercase' : 'none',
   };
@@ -78,8 +78,10 @@ export const Captions: React.FC<Props> = ({ timeline, variant = 'pill', bottom =
         const active = frame >= w.abs - 1 && frame < w.absEnd + 2;
         const past = frame >= w.absEnd + 2;
         const k = active ? Math.min(1, (frame - w.abs + 1) / 4) : 0;
+        // pop amount shrinks for long words so the visual growth never swallows the gap to its neighbours
+        const pop = Math.min(0.06, 0.2 / Math.max(3, w.text.length));
         return (
-          <span key={i} style={{ display: 'inline-block', color: active ? accent : color, opacity: past || active ? 1 : 0.72, transform: `scale(${1 + 0.06 * k * (1 - k * 0.3)})`, transition: 'none', whiteSpace: 'pre' }}>
+          <span key={i} style={{ display: 'inline-block', color: active ? accent : color, opacity: past || active ? 1 : 0.72, transform: `scale(${1 + pop * k * (1 - k * 0.3)})`, transition: 'none', whiteSpace: 'pre' }}>
             {w.text}
           </span>
         );
