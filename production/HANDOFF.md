@@ -81,6 +81,20 @@ Chromium: `REMOTION_BROWSER` (по умолчанию `/opt/pw-browsers/chromium
   дизайна сайта обновлять именно там.
 * **Контент подарка** (тексты карточек) → `src/lib/content.ts` (`loveGift`, `momGift`, `TEMPLATES`).
 
+## 4a. Состояние живого сайта на момент производства (2026-11-04)
+
+* `https://lovelink.my` → 307 → `https://www.lovelink.my` (200). Страницы `/`, `/templates/feel-link`,
+  `/pricing`, `/auth` сняты Playwright-ом (390×844 @3x) — `production/remotion/public/screens/`.
+  Тексты и вёрстка полностью совпали с реконструкциями в `src/screens/*`.
+* **Бэкенд недоступен:** `https://www.lovelink.my/api/templates` отдаёт страницу Render
+  «This service has been suspended by its owner». Из-за этого главная показывает fallback-шаблоны
+  из моков с пустыми серыми превью (YouTube-embed вместо постера). Поэтому в роликах каталог
+  шаблонов показан реконструкцией с собственными превью, а не реальным скриншотом главной.
+  Реальный скриншот использован там, где страница рендерится без бэкенда — `/pricing` (VIDEO-005).
+* `edit.lovelink.my`, `view.lovelink.my`, `*.vercel.app`, `*.onrender.com`, `res.cloudinary.com`
+  из сессии недоступны (сетевая политика) — редактор, страница подарка и экран пароля
+  реконструированы по коду.
+
 ## 5. Как заменить реконструкции на реальные записи интерфейса
 
 1. Разрешить в сетевых настройках сессии `lovelink.my`, `edit.lovelink.my`, `view.lovelink.my`

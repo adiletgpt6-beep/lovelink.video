@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill, staticFile, useCurrentFrame } from 'remotion';
+import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame } from 'remotion';
 import '../style.css';
 import { useFontsReady } from '../lib/fonts';
 import { TL005 } from '../lib/timelines';
@@ -16,7 +16,6 @@ import { GiftViewerScreen } from '../screens/GiftViewer';
 import { EditorPanel } from '../screens/EditorScreen';
 import { PublishModal } from '../screens/PublishModal';
 import { PinLockScreen } from '../screens/PinLockScreen';
-import { PlanCard } from '../screens/PricingScreen';
 import { Bouquet, QrCard } from '../ui/Illustrations';
 import { loveGift, momGift, DEMO_GIFT } from '../lib/content';
 import { SceneSeq, VideoAudio, wordAt } from './common';
@@ -141,30 +140,33 @@ const Share: React.FC = () => {
   );
 };
 
-/* scene 4 — free + pricing */
+/* scene 4 — free + pricing (real screenshot of lovelink.my/pricing, captured 2026-11-04) */
 const Price: React.FC = () => {
   const f = useCurrentFrame();
   const tPlans = wordAt(S4, 'тарифы');
   const free = springIn(f, 30, 2, { damping: 12 });
-  const plans = [
-    { name: 'Start', price: '$10', tagline: 'Для онлайн-подарков близким', dark: false, badge: null, features: ['До 30 страниц-подарков', 'Тариф активен 1 год', 'Страницы хранятся 30 лет'] },
-    { name: 'Business', price: '$50', tagline: 'Для магазинов подарков и цветочных салонов', dark: true, badge: 'Популярный', features: ['До 300 страниц-подарков', 'Тариф активен 2 года', 'Страницы хранятся 30 лет'] },
-    { name: 'Pro', price: '$100', tagline: 'Для сети точек и высокого объёма заказов', dark: false, badge: null, features: ['До 1000 страниц-подарков', 'Тариф активен 3 года', 'Страницы хранятся 30 лет'] },
-  ];
+  const rise = springIn(f, 30, 8, { damping: 16, stiffness: 100 });
+  // scroll the real page from the header down to the START plan card
+  const scroll = interpolate(f, [tPlans - 6, tPlans + 26], [0, 430], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: easeOut });
+  const hl = prog(f, tPlans + 24, 10);
   return (
     <AbsoluteFill>
       <LightBg />
-      <div style={{ position: 'absolute', top: 230, left: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, transform: `scale(${free})`, opacity: free }}>
+      <div style={{ position: 'absolute', top: 210, left: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, transform: `scale(${free})`, opacity: free }}>
         <div style={{ fontFamily: font.bold, fontWeight: 900, fontSize: 92, color: '#0a0a0a', letterSpacing: -3 }}>БЕСПЛАТНО</div>
-        <div style={{ fontFamily: font.caption, fontWeight: 700, fontSize: 36, color: '#404040', textAlign: 'center' }}>попробовать можно без оплаты</div>
+        <div style={{ fontFamily: font.caption, fontWeight: 700, fontSize: 34, color: '#404040', textAlign: 'center' }}>попробовать можно без оплаты</div>
       </div>
-      <div style={{ position: 'absolute', top: 520, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 22, padding: '0 40px' }}>
-        {plans.map((p, i) => {
-          const s = springIn(f, 30, Math.max(0, tPlans - 6 + i * 5), { damping: 14 });
-          return <div key={p.name} style={{ width: 330, opacity: s, transform: `translateY(${(1 - s) * 200}px)` }}><div style={{ zoom: 1.05 } as React.CSSProperties}><PlanCard plan={p} highlight={i === 0 ? prog(f, tPlans + 20, 10) : 0} /></div></div>;
-        })}
-      </div>
-      <div style={{ position: 'absolute', top: 1230, left: 0, right: 0, textAlign: 'center', padding: '0 80px' }}>
+      <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'flex-start', paddingTop: 470, transform: `translateY(${(1 - rise) * 600}px)` }}>
+        <PhoneFrame scale={0.98} statusColor="#111" glow="rgba(120,80,240,0.25)">
+          <div style={{ position: 'absolute', inset: 0, background: '#fff' }} />
+          <Img src={staticFile('screens/pricing-full.png')} style={{ position: 'absolute', left: 0, top: 0, width: 390, transform: `translateY(${-scroll}px)` }} />
+          {/* highlight ring around the START card once scrolled */}
+          <div style={{ position: 'absolute', left: 10, right: 10, top: 108, height: 440, borderRadius: 28, boxShadow: `0 0 0 ${3 * hl}px rgba(120,80,240,${0.9 * hl})`, opacity: hl }} />
+        </PhoneFrame>
+      </AbsoluteFill>
+      <div style={{ position: 'absolute', right: 40, top: 560 }}><Chip start={tPlans + 10} fontSize={30}>Start · $10 · 1 год</Chip></div>
+      <div style={{ position: 'absolute', left: 40, top: 760 }}><Chip start={tPlans + 18} fontSize={30}>30 страниц-подарков</Chip></div>
+      <div style={{ position: 'absolute', top: 1385, left: 0, right: 0, textAlign: 'center', padding: '0 80px' }}>
         <BigText text="тарифы — от $10 в год" start={tPlans + 6} stagger={4} fontFamily={font.bold} fontSize={60} weight={700} color="#0a0a0a" reveal="up" letterSpacing={-1} accentWords={['10']} accentColor="#F84888" />
       </div>
     </AbsoluteFill>
