@@ -12,12 +12,12 @@ const [id, out, countArg, framesArg] = process.argv.slice(2);
 fs.mkdirSync(out, { recursive: true });
 const browserExecutable = process.env.REMOTION_BROWSER || '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome';
 const serveUrl = await bundle({ entryPoint: path.join(root, 'src/index.ts'), webpackOverride: (c) => enableTailwind(c), publicDir: path.join(root, 'public') });
-const composition = await selectComposition({ serveUrl, id, browserExecutable, chromiumOptions: { gl: 'swangle' } });
+const composition = await selectComposition({ serveUrl, id, browserExecutable, chromiumOptions: { gl: process.env.GL || 'swiftshader' } });
 const n = Number(countArg || 10);
 const frames = framesArg ? framesArg.split(',').map(Number) : Array.from({ length: n }, (_, i) => Math.floor(composition.durationInFrames * (i + 0.5) / n));
 console.log(id, 'frames', composition.durationInFrames, '->', frames.join(','));
 for (const frame of frames) {
-  await renderStill({ composition, serveUrl, output: path.join(out, `f${frame}.jpg`), frame, imageFormat: 'jpeg', jpegQuality: 85, browserExecutable, chromiumOptions: { gl: 'swangle' } });
+  await renderStill({ composition, serveUrl, output: path.join(out, `f${frame}.jpg`), frame, imageFormat: 'jpeg', jpegQuality: 85, browserExecutable, chromiumOptions: { gl: process.env.GL || 'swiftshader' } });
 }
 fs.writeFileSync(path.join(out, 'frames.txt'), frames.join(' '));
 console.log('done');

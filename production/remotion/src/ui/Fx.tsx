@@ -66,7 +66,7 @@ export const FloatingHearts: React.FC<{ count?: number; seed?: number; start?: n
         const p = lt / h.dur;
         const y = 105 - p * 115;
         const op = p < 0.1 ? p / 0.1 : p > 0.8 ? (1 - p) / 0.2 : 1;
-        return <Heart key={h.id} size={h.size} color={h.color} style={{ position: 'absolute', left: `calc(${h.x}% + ${Math.sin(lt / 20) * h.sway}px)`, top: `${y}%`, opacity: op * 0.85, filter: 'drop-shadow(0 4px 12px rgba(248,72,136,0.35))' }} />;
+        return <Heart key={h.id} size={h.size} color={h.color} style={{ position: 'absolute', left: `calc(${h.x}% + ${Math.sin(lt / 20) * h.sway}px)`, top: `${y}%`, opacity: op * 0.85 }} />;
       })}
     </AbsoluteFill>
   );
@@ -82,7 +82,7 @@ export const Bokeh: React.FC<{ count?: number; seed?: number; colors?: string[];
   return (
     <AbsoluteFill style={{ pointerEvents: 'none', overflow: 'hidden' }}>
       {items.map((b) => (
-        <div key={b.id} style={{ position: 'absolute', left: `${b.x}%`, top: `${b.y}%`, width: b.size, height: b.size, marginLeft: -b.size / 2, marginTop: -b.size / 2, borderRadius: '50%', background: b.color, opacity: opacity * (0.6 + 0.4 * Math.sin(frame / 40 * b.speed + b.phase)), filter: `blur(${blur}px)`, transform: `translate(${Math.sin(frame / 60 * b.speed + b.phase) * 30}px, ${Math.cos(frame / 70 * b.speed + b.phase) * 30}px)` }} />
+        <div key={b.id} style={{ position: 'absolute', left: `${b.x}%`, top: `${b.y}%`, width: b.size, height: b.size, marginLeft: -b.size / 2, marginTop: -b.size / 2, borderRadius: '50%', background: `radial-gradient(circle closest-side, ${b.color} 0%, ${b.color} ${Math.max(10, 70 - blur * 3)}%, ${b.color}00 100%)`, opacity: opacity * (0.6 + 0.4 * Math.sin(frame / 40 * b.speed + b.phase)), transform: `translate(${Math.sin(frame / 60 * b.speed + b.phase) * 30}px, ${Math.cos(frame / 70 * b.speed + b.phase) * 30}px)` }} />
       ))}
     </AbsoluteFill>
   );

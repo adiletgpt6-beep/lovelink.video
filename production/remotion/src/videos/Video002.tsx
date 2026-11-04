@@ -178,7 +178,7 @@ const Cabinet: React.FC = () => {
       </AbsoluteFill>
       <div style={{ position: 'absolute', top: 1300, left: 0, right: 0, display: 'flex', justifyContent: 'center', opacity: 1 - shrink }}><StepBadge text="Шаг 5 · Все подарки — в кабинете" start={4} /></div>
       <div style={{ position: 'absolute', top: 1130, left: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, opacity: cta, transform: `translateY(${(1 - cta) * 40}px)` }}>
-        <div style={{ background: 'rgba(255,255,255,0.9)', borderRadius: 32, padding: '26px 40px', boxShadow: '0 20px 60px rgba(120,80,240,0.18)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+        <div style={{ background: 'rgba(255,255,255,0.9)', borderRadius: 32, padding: '26px 40px', boxShadow: '0 20px 34px rgba(120,80,240,0.18)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
           <Logo width={300} />
           <Domain size={64} gradient />
         </div>

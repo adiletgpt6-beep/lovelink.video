@@ -27,7 +27,7 @@ export const PhoneFrame: React.FC<Props> = ({ children, scale = 1.8, style, stat
         <div
           style={{
             position: 'absolute', inset: -60 * scale, borderRadius: '50%',
-            background: `radial-gradient(ellipse at 50% 50%, ${glow} 0%, transparent 65%)`, filter: 'blur(40px)', opacity: 0.8,
+            background: `radial-gradient(ellipse at 50% 50%, ${glow} 0%, transparent 65%)`, opacity: 0.8,
           }}
         />
       )}
@@ -37,7 +37,7 @@ export const PhoneFrame: React.FC<Props> = ({ children, scale = 1.8, style, stat
           style={{
             position: 'absolute', inset: 0, borderRadius: RADIUS,
             background: 'linear-gradient(145deg,#3a3a40 0%,#141416 45%,#0a0a0b 100%)',
-            boxShadow: '0 40px 90px rgba(0,0,0,0.45), 0 10px 30px rgba(0,0,0,0.35), inset 0 0 0 1.5px rgba(255,255,255,0.10)',
+            boxShadow: '0 20px 34px rgba(0,0,0,0.45), 0 10px 30px rgba(0,0,0,0.35), inset 0 0 0 1.5px rgba(255,255,255,0.10)',
           }}
         />
         {/* side buttons */}

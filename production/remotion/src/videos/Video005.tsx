@@ -58,7 +58,7 @@ const What: React.FC = () => {
   return (
     <AbsoluteFill>
       <BrandBg />
-      <div style={{ position: 'absolute', top: 190, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}><div style={{ background: '#fff', borderRadius: 28, padding: '18px 34px', boxShadow: '0 20px 60px rgba(0,0,0,0.2)', opacity: rise }}><Logo width={340} /></div></div>
+      <div style={{ position: 'absolute', top: 190, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}><div style={{ background: '#fff', borderRadius: 28, padding: '18px 34px', boxShadow: '0 20px 34px rgba(0,0,0,0.2)', opacity: rise }}><Logo width={340} /></div></div>
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'flex-start', paddingTop: 330, transform: `translateY(${(1 - rise) * 700}px)` }}>
         <PhoneFrame scale={1.3} statusColor="#fff" glow="rgba(255,255,255,0.35)"><GiftViewerScreen g={loveGift} active={active} frame={f} playing={f > tV - 8} seed={7} /></PhoneFrame>
       </AbsoluteFill>
@@ -66,7 +66,7 @@ const What: React.FC = () => {
       <div style={{ position: 'absolute', right: 50, top: 780 }}><Chip start={tP} fontSize={32}>📷 фото</Chip></div>
       <div style={{ position: 'absolute', left: 50, top: 1000 }}><Chip start={tW} fontSize={32}>💌 слова</Chip></div>
       <div style={{ position: 'absolute', right: 40, top: 1180, transform: `scale(${lock})`, opacity: lock }}>
-        <div style={{ background: '#0a0a0a', color: '#fff', borderRadius: 28, padding: '20px 30px', display: 'flex', alignItems: 'center', gap: 18, boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}><span style={{ fontSize: 40 }}>🔒</span><div style={{ fontFamily: font.caption, fontWeight: 800, fontSize: 30 }}>по паролю<div style={{ fontFamily: font.mono, fontSize: 34, letterSpacing: 8, marginTop: 4 }}>{DEMO_GIFT.code}</div></div></div>
+        <div style={{ background: '#0a0a0a', color: '#fff', borderRadius: 28, padding: '20px 30px', display: 'flex', alignItems: 'center', gap: 18, boxShadow: '0 20px 34px rgba(0,0,0,0.3)' }}><span style={{ fontSize: 40 }}>🔒</span><div style={{ fontFamily: font.caption, fontWeight: 800, fontSize: 30 }}>по паролю<div style={{ fontFamily: font.mono, fontSize: 34, letterSpacing: 8, marginTop: 4 }}>{DEMO_GIFT.code}</div></div></div>
       </div>
     </AbsoluteFill>
   );
@@ -99,7 +99,7 @@ const Steps: React.FC = () => {
         })}
       </div>
       <div style={{ position: 'absolute', top: 1190, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `scale(${done})`, opacity: done }}>
-        <div style={{ background: 'linear-gradient(90deg,#F84888,#7850F0)', color: '#fff', borderRadius: 999, padding: '26px 60px', fontFamily: font.bold, fontWeight: 900, fontSize: 64, boxShadow: '0 30px 80px rgba(120,80,240,0.35)' }}>ГОТОВО ✓</div>
+        <div style={{ background: 'linear-gradient(90deg,#F84888,#7850F0)', color: '#fff', borderRadius: 999, padding: '26px 60px', fontFamily: font.bold, fontWeight: 900, fontSize: 64, boxShadow: '0 20px 34px rgba(120,80,240,0.35)' }}>ГОТОВО ✓</div>
       </div>
     </AbsoluteFill>
   );
@@ -121,7 +121,7 @@ const Share: React.FC = () => {
     <AbsoluteFill>
       <BrandBg dark />
       <div style={{ position: 'absolute', top: 220, left: 70, right: 70, opacity: bubble, transform: `translateY(${(1 - bubble) * 60}px) scale(${0.9 + 0.1 * bubble})` }}>
-        <div style={{ alignSelf: 'flex-end', background: '#2f6bff', color: '#fff', borderRadius: 34, borderBottomRightRadius: 10, padding: '26px 34px', fontFamily: font.ui, fontSize: 36, lineHeight: 1.3, boxShadow: '0 20px 60px rgba(0,0,0,0.3)', marginLeft: 120 }}>Открой, это для тебя 🤍<br /><span style={{ textDecoration: 'underline', opacity: 0.9 }}>{DEMO_GIFT.url}</span></div>
+        <div style={{ alignSelf: 'flex-end', background: '#2f6bff', color: '#fff', borderRadius: 34, borderBottomRightRadius: 10, padding: '26px 34px', fontFamily: font.ui, fontSize: 36, lineHeight: 1.3, boxShadow: '0 20px 34px rgba(0,0,0,0.3)', marginLeft: 120 }}>Открой, это для тебя 🤍<br /><span style={{ textDecoration: 'underline', opacity: 0.9 }}>{DEMO_GIFT.url}</span></div>
         <div style={{ textAlign: 'right', marginTop: 10, fontFamily: font.caption, fontSize: 26, color: 'rgba(255,255,255,0.55)' }}>Доставлено · 21:16</div>
       </div>
       <div style={{ position: 'absolute', top: 440, left: -40, transform: `translateY(${(1 - bq) * 300}px) rotate(-10deg)`, opacity: bq }}>
@@ -181,9 +181,9 @@ const Cta: React.FC = () => {
       <BrandBg />
       <FloatingHearts count={10} colors={['#fff', '#FDA4C4']} />
       <div style={{ position: 'absolute', top: 520, left: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 36 }}>
-        <div style={{ background: '#fff', borderRadius: 40, padding: '40px 60px', transform: `scale(${l})`, boxShadow: '0 40px 100px rgba(0,0,0,0.25)' }}><Logo width={560} /></div>
+        <div style={{ background: '#fff', borderRadius: 40, padding: '40px 60px', transform: `scale(${l})`, boxShadow: '0 20px 34px rgba(0,0,0,0.25)' }}><Logo width={560} /></div>
         <div style={{ opacity: d, transform: `translateY(${(1 - d) * 40}px)` }}><Domain size={100} /></div>
-        <div style={{ opacity: b, transform: `scale(${b * pulse})`, background: '#0a0a0a', color: '#fff', borderRadius: 999, padding: '30px 64px', fontFamily: font.bold, fontWeight: 700, fontSize: 48, boxShadow: '0 30px 80px rgba(0,0,0,0.35)' }}>Создать подарок →</div>
+        <div style={{ opacity: b, transform: `scale(${b * pulse})`, background: '#0a0a0a', color: '#fff', borderRadius: 999, padding: '30px 64px', fontFamily: font.bold, fontWeight: 700, fontSize: 48, boxShadow: '0 20px 34px rgba(0,0,0,0.35)' }}>Создать подарок →</div>
         <div style={{ opacity: b, fontFamily: font.caption, fontWeight: 700, fontSize: 34, color: 'rgba(255,255,255,0.9)' }}>шаблон · ваш контент · ссылка, QR и пароль</div>
       </div>
     </AbsoluteFill>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArtPhoto, ArtVariant } from '../ui/ArtPhoto';
 
-const InfoDot = () => <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/[0.06] text-[11px] text-white/60 ring-1 ring-white/10 backdrop-blur-sm">i</span>;
+const InfoDot = () => <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/[0.06] text-[11px] text-white/60 ring-1 ring-white/10">i</span>;
 
 const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
   <div className="flex flex-col gap-1.5">
@@ -53,10 +53,10 @@ export const EditorPanel: React.FC<Props> = ({ kind, open, preset = 0, presets =
     <>
       <div className="absolute inset-0 z-[39] bg-black/35" style={{ opacity: open }} />
       <div
-        className="absolute z-40 flex flex-col overflow-hidden rounded-[28px] ring-1 ring-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
+        className="absolute z-40 flex flex-col overflow-hidden rounded-[28px] ring-1 ring-white/10 shadow-[0_20px_34px_rgba(0,0,0,0.45)]"
         style={{ left: 16, right: 16, top: 112, maxHeight: 600, opacity: open, transform: `translateY(${(1 - open) * 10}px) scale(${0.98 + 0.02 * open})`, transformOrigin: 'top right', background: 'linear-gradient(180deg, rgba(0,0,0,0.82), rgba(0,0,0,0.72) 50%, rgba(0,0,0,0.64))' }}
       >
-        <div className="flex shrink-0 items-center justify-between border-b border-white/10 bg-black/30 px-5 py-4 backdrop-blur-md"><span className="text-[11px] uppercase tracking-[0.22em] text-white/85">{title}</span><InfoDot /></div>
+        <div className="flex shrink-0 items-center justify-between border-b border-white/10 bg-black/30 px-5 py-4"><span className="text-[11px] uppercase tracking-[0.22em] text-white/85">{title}</span><InfoDot /></div>
         <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
           <div className="flex flex-col gap-4 px-5 py-4" style={{ transform: `translateY(${-scroll}px)` }}>
             {kind === 'bg' && (
@@ -114,7 +114,7 @@ export const EditorPanel: React.FC<Props> = ({ kind, open, preset = 0, presets =
             )}
           </div>
         </div>
-        <div className="flex shrink-0 gap-2.5 border-t border-white/[0.08] bg-black/30 px-5 py-4 backdrop-blur-md">
+        <div className="flex shrink-0 gap-2.5 border-t border-white/[0.08] bg-black/30 px-5 py-4">
           <div className="flex h-10 flex-1 items-center justify-center rounded-xl bg-white/[0.04] text-[13px] text-white/60 ring-1 ring-white/[0.08]">Отмена</div>
           <div className="flex h-10 flex-1 items-center justify-center rounded-xl bg-white text-[13px] font-medium text-black ring-1 ring-white/10" style={{ transform: `scale(${1 - 0.05 * savePressed})`, boxShadow: savePressed ? `0 0 0 ${6 * savePressed}px rgba(255,255,255,0.25)` : undefined }}>{saved ? 'Сохранено' : 'Сохранить'}</div>
         </div>

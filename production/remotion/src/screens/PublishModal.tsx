@@ -13,7 +13,7 @@ export const PublishModal: React.FC<Props> = ({ open, qr = 0, copied = null, scr
   return (
     <div className="font-ui absolute inset-0 z-[200] flex items-center justify-center px-4 py-3" style={{ opacity: open }}>
       <div className="absolute inset-0 bg-black/60" />
-      <div className="relative flex w-full flex-col rounded-[28px] bg-[#05070b] p-px shadow-[0_24px_80px_rgba(0,0,0,0.7)]" style={{ maxWidth: 360, height: 680, transform: `translateY(${(1 - open) * 20}px) scale(${0.97 + 0.03 * open})` }}>
+      <div className="relative flex w-full flex-col rounded-[28px] bg-[#05070b] p-px shadow-[0_20px_34px_rgba(0,0,0,0.7)]" style={{ maxWidth: 360, height: 680, transform: `translateY(${(1 - open) * 20}px) scale(${0.97 + 0.03 * open})` }}>
         <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[27px] ring-1 ring-white/[0.08]" style={{ background: 'linear-gradient(180deg,#06080d,#070a10,#080b12)' }}>
           <div className="flex shrink-0 items-center justify-between border-b border-white/[0.07] px-5 py-4"><span className="text-[11px] uppercase tracking-[0.22em] text-white/55">Ваша страница готова</span><span className="flex h-11 w-11 items-center justify-center rounded-full text-[12px] text-white/35">✕</span></div>
           <div className="relative min-h-0 flex-1 overflow-hidden">

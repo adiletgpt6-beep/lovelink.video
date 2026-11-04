@@ -25,7 +25,7 @@ export const GiftsCabinetScreen: React.FC<Props> = ({ scroll = 0, expanded = tru
         {list.map((g, i) => {
           const isOpen = expanded && i === 0;
           return (
-            <div key={i} className="overflow-hidden rounded-[28px] border border-white/15 bg-neutral-950 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+            <div key={i} className="overflow-hidden rounded-[28px] border border-white/15 bg-neutral-950 shadow-[0_20px_34px_rgba(0,0,0,0.35)]">
               <div className="flex items-stretch">
                 <div className="flex min-w-0 flex-1 items-center gap-3 px-5 py-4 text-left">
                   <div className="min-w-0 flex-1"><p className="truncate text-[14px] font-semibold text-white">{g.title}</p><p className="mt-0.5 text-[11px] text-white/45">{g.date}</p></div>

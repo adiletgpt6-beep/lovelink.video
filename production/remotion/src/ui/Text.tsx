@@ -29,7 +29,7 @@ type BigTextProps = {
 };
 
 /** Headline with per-word reveal (blur/up/pop). */
-export const BigText: React.FC<BigTextProps> = ({ text, start = 0, stagger = 4, fontFamily = font.display, fontSize = 92, color = '#fff', weight = 600, italic = false, align = 'center', lineHeight = 1.12, style, accentWords = [], accentColor = '#F84888', reveal = 'blur', letterSpacing = -1.5, uppercase = false, maxWidth, starts }) => {
+export const BigText: React.FC<BigTextProps> = ({ text, start = 0, stagger = 4, fontFamily = font.display, fontSize = 92, color = '#fff', weight = 600, italic = false, align = 'center', lineHeight = 1.12, style, accentWords = [], accentColor = '#F84888', reveal = 'up', letterSpacing = -1.5, uppercase = false, maxWidth, starts }) => {
   const frame = useCurrentFrame();
   const words = text.split(' ');
   return (
@@ -54,7 +54,7 @@ export const StepBadge: React.FC<{ text: string; start?: number; dark?: boolean;
   const frame = useCurrentFrame();
   const p = prog(frame, start, 14);
   return (
-    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 14, padding: '16px 30px', borderRadius: 999, background: dark ? 'rgba(10,10,14,0.72)' : 'rgba(255,255,255,0.88)', color: color ?? (dark ? '#fff' : '#0a0a0a'), fontFamily: font.caption, fontWeight: 700, fontSize: 34, letterSpacing: -0.3, boxShadow: '0 12px 40px rgba(0,0,0,0.12)', backdropFilter: 'blur(12px)', opacity: p, transform: `translateY(${(1 - p) * 20}px)`, ...style }}>
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 14, padding: '16px 30px', borderRadius: 999, background: dark ? 'rgba(10,10,14,0.72)' : 'rgba(255,255,255,0.88)', color: color ?? (dark ? '#fff' : '#0a0a0a'), fontFamily: font.caption, fontWeight: 700, fontSize: 34, letterSpacing: -0.3, boxShadow: '0 12px 34px rgba(0,0,0,0.12)', opacity: p, transform: `translateY(${(1 - p) * 20}px)`, ...style }}>
       <span style={{ width: 12, height: 12, borderRadius: 999, background: 'linear-gradient(90deg,#F84888,#7850F0)' }} />
       {text}
     </div>

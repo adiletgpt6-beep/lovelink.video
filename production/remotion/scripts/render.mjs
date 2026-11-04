@@ -13,7 +13,7 @@ const repo = path.join(root, '..', '..');
 const ids = process.argv.slice(2).filter((a) => a.startsWith('VIDEO-'));
 const all = ids.length ? ids : ['VIDEO-001', 'VIDEO-002', 'VIDEO-003', 'VIDEO-004', 'VIDEO-005'];
 const browserExecutable = process.env.REMOTION_BROWSER || '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome';
-const chromiumOptions = { gl: 'swangle' };
+const chromiumOptions = { gl: process.env.GL || 'swiftshader' };
 
 const serveUrl = await bundle({ entryPoint: path.join(root, 'src/index.ts'), webpackOverride: (c) => enableTailwind(c), publicDir: path.join(root, 'public') });
 for (const id of all) {

@@ -8,6 +8,6 @@ Config.setCrf(17);
 Config.setPixelFormat('yuv420p');
 Config.setAudioCodec('aac');
 Config.setConcurrency(4);
-Config.setChromiumOpenGlRenderer('swangle');
+Config.setChromiumOpenGlRenderer('swiftshader');
 Config.setBrowserExecutable(process.env.REMOTION_BROWSER || '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome');
 Config.overrideWebpackConfig((c) => enableTailwind(c));

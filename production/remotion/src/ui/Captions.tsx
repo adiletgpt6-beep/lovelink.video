@@ -69,7 +69,7 @@ export const Captions: React.FC<Props> = ({ timeline, variant = 'pill', bottom =
     textTransform: uppercase ? 'uppercase' : 'none',
   };
   const frameStyle: React.CSSProperties =
-    variant === 'pill' ? { padding: '18px 34px', borderRadius: 28, background: 'rgba(8,8,16,0.55)', backdropFilter: 'blur(14px)', boxShadow: '0 12px 40px rgba(0,0,0,0.25)' }
+    variant === 'pill' ? { padding: '18px 34px', borderRadius: 28, background: 'rgba(8,8,16,0.62)', boxShadow: '0 12px 34px rgba(0,0,0,0.25)' }
     : variant === 'boxed' ? { padding: '14px 28px', borderRadius: 14, background: '#0a0a0a' }
     : { textShadow: '0 4px 24px rgba(0,0,0,0.65), 0 1px 2px rgba(0,0,0,0.7)' };
   return (

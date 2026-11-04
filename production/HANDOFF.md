@@ -61,6 +61,14 @@ npx remotion studio                     # интерактивный превь�
 Chromium: `REMOTION_BROWSER` (по умолчанию `/opt/pw-browsers/chromium-1243/chrome-linux64/chrome`);
 без переменной Remotion скачает свой браузер.
 
+**Производительность рендера (важно для серверов без GPU).** Программный GL-рендерер
+`swiftshader` (`GL=swiftshader`, задан по умолчанию в `remotion.config.ts` и скриптах) в ~4 раза
+быстрее `swangle` на этом проекте. Дорогие в софтверном рендере приёмы уже убраны:
+`filter: blur()`, `backdrop-filter`, SVG `feTurbulence`, `mix-blend-mode`, большие `box-shadow`.
+Фоны-«аврора» и генеративные «фото» предрендерены в `public/brand/aurora.png` и `public/art/*.jpg`
+(`scripts/art.py`). Профилировать слои можно композициями `Perf-*` (`node scripts/perf.mjs Perf-home`).
+Ориентир: 170–260 мс/кадр при concurrency 4 → 4–6 минут на ролик.
+
 ## 4. Как менять
 
 * **Текст озвучки** → `scripts/vo-scripts.json` → `ELEVENLABS_API_KEY=… node scripts/tts.mjs VIDEO-00X --force`

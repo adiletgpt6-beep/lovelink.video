@@ -1,6 +1,7 @@
 import React from 'react';
 import { Composition, Folder } from 'remotion';
 import { Preview, PreviewScreen } from './Preview';
+import { Perf } from './Perf';
 import { TL001, TL002, TL003, TL004, TL005 } from './lib/timelines';
 import { Video001 } from './videos/Video001';
 import { Video002 } from './videos/Video002';
@@ -19,6 +20,11 @@ export const Root: React.FC = () => (
       <Composition id="VIDEO-003" component={Video003} durationInFrames={TL003.durationInFrames} {...base} />
       <Composition id="VIDEO-004" component={Video004} durationInFrames={TL004.durationInFrames} {...base} />
       <Composition id="VIDEO-005" component={Video005} durationInFrames={TL005.durationInFrames} {...base} />
+    </Folder>
+    <Folder name="Perf">
+      {['blank', 'aurora', 'grain', 'grainBlend', 'auroraFull', 'stars', 'phone', 'art', 'viewer', 'home', 'imgs', 'cards', 'phoneEmpty'].map((v) => (
+        <Composition key={v} id={`Perf-${v}`} component={Perf} durationInFrames={300} defaultProps={{ variant: v }} {...base} />
+      ))}
     </Folder>
     <Folder name="Previews">
       {screens.map((s) => (

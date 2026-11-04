@@ -9,22 +9,21 @@ type TemplateCardProps = { title: string; badge: string; variant: ArtVariant; se
 export const TemplateCard: React.FC<TemplateCardProps> = ({ title, badge, variant, seed, slide = 0, total = 3, highlight = 0, pressed = 0 }) => (
   <div
     className="group block overflow-hidden rounded-[1.15rem] border border-white/90 bg-[linear-gradient(180deg,#ffffff_0%,#fcfcfd_100%)] shadow-[0_8px_18px_rgba(15,23,42,0.05),0_16px_28px_rgba(15,23,42,0.03)] ring-1 ring-black/[0.02]"
-    style={{ transform: `scale(${1 - pressed * 0.03})`, boxShadow: highlight ? `0 0 0 ${3 * highlight}px rgba(120,80,240,${0.9 * highlight}), 0 16px 40px rgba(120,80,240,${0.35 * highlight})` : undefined }}
+    style={{ transform: `scale(${1 - pressed * 0.03})`, boxShadow: highlight ? `0 0 0 ${3 * highlight}px rgba(120,80,240,${0.9 * highlight}), 0 16px 34px rgba(120,80,240,${0.35 * highlight})` : undefined }}
   >
     <div className="relative">
-      <div className="absolute inset-x-2 -top-1.5 h-6 rounded-full bg-black/8 blur-2xl" />
       <div className="relative overflow-hidden rounded-[1rem] bg-[linear-gradient(180deg,#f8f8fb_0%,#f3f3f7_100%)]">
         <div className="relative aspect-[4/4.9] w-full overflow-hidden rounded-[1rem] bg-neutral-100">
           <ArtPhoto variant={variant} seed={seed} style={{ position: 'absolute', inset: 0 }} bokehCount={10} />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/18 via-black/[0.03] to-transparent" />
           <div className="pointer-events-none absolute left-1.5 top-1.5">
-            <span className="inline-flex items-center gap-1 rounded-full border border-white/65 bg-white/82 px-1.5 py-0.5 text-[8px] font-semibold text-neutral-700 shadow-[0_8px_18px_rgba(15,23,42,0.10)] backdrop-blur-md">
+            <span className="inline-flex items-center gap-1 rounded-full border border-white/65 bg-white/82 px-1.5 py-0.5 text-[8px] font-semibold text-neutral-700 shadow-[0_8px_18px_rgba(15,23,42,0.10)]">
               <span className="h-1.5 w-1.5 rounded-full bg-rose-400" />
               {badge}
             </span>
           </div>
           <div className="pointer-events-none absolute right-1.5 top-1.5">
-            <span className="inline-flex items-center rounded-full border border-white/65 bg-white/82 px-1.5 py-0.5 text-[8px] font-semibold text-neutral-600 shadow-[0_2px_8px_rgba(15,23,42,0.12)] backdrop-blur-md">{slide + 1} / {total}</span>
+            <span className="inline-flex items-center rounded-full border border-white/65 bg-white/82 px-1.5 py-0.5 text-[8px] font-semibold text-neutral-600 shadow-[0_2px_8px_rgba(15,23,42,0.12)]">{slide + 1} / {total}</span>
           </div>
           <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
             {Array.from({ length: total }).map((_, i) => (

@@ -41,7 +41,7 @@ const Hook: React.FC = () => {
       <BrandBg dark={phase === 2} />
       {phase < 2 && (
         <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ fontSize: 260, transform: `scale(${inP})`, filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.35))' }}>{phase === 0 ? '💌' : '💐'}</div>
+          <div style={{ fontSize: 260, transform: `scale(${inP})` }}>{phase === 0 ? '💌' : '💐'}</div>
           <div style={{ position: 'relative', marginTop: 40, transform: `scale(${inP})` }}>
             <div style={{ fontFamily: font.bold, fontWeight: 900, fontSize: 108, color: '#fff', letterSpacing: -2, textTransform: 'uppercase', lineHeight: 1 }}>{phase === 0 ? 'Открытка' : 'Цветы'}</div>
             <Strike p={strike} />
@@ -104,7 +104,7 @@ const Content: React.FC = () => {
           const scale = i === 1 ? 1.12 : 1;
           return (
             <div key={i} style={{ transform: `translateY(${(1 - p) * 500}px) scale(${scale})`, opacity: p, transformOrigin: 'bottom center' }}>
-              <div style={{ position: 'relative', width: CARD_W * 1.15, height: CARD_H * 1.15, borderRadius: 32, overflow: 'hidden', boxShadow: '0 40px 80px rgba(0,0,0,0.35)' }}><div style={{ position: 'absolute', left: 0, top: 0, width: CARD_W, height: CARD_H, transform: 'scale(1.15)', transformOrigin: 'top left' }}>{tile.node}</div></div>
+              <div style={{ position: 'relative', width: CARD_W * 1.15, height: CARD_H * 1.15, borderRadius: 32, overflow: 'hidden', boxShadow: '0 20px 34px rgba(0,0,0,0.35)' }}><div style={{ position: 'absolute', left: 0, top: 0, width: CARD_W, height: CARD_H, transform: 'scale(1.15)', transformOrigin: 'top left' }}>{tile.node}</div></div>
               <div style={{ marginTop: 22, textAlign: 'center', fontFamily: font.bold, fontWeight: 700, fontSize: 36, color: '#fff' }}>{tile.label}</div>
             </div>
           );
@@ -128,7 +128,7 @@ const Access: React.FC = () => {
     <AbsoluteFill>
       <BrandBg dark />
       <div style={{ position: 'absolute', top: 210, left: 80 }}><SectionNumber n="03" title="Личный доступ" dark /></div>
-      <div style={{ position: 'absolute', top: 390, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `scale(${lock})` }}><div style={{ width: 160, height: 160, borderRadius: 48, background: 'linear-gradient(135deg,#F84888,#7850F0)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 30px 80px rgba(248,72,136,0.4)' }}><LockIcon size={90} /></div></div>
+      <div style={{ position: 'absolute', top: 390, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `scale(${lock})` }}><div style={{ width: 160, height: 160, borderRadius: 48, background: 'linear-gradient(135deg,#F84888,#7850F0)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 34px rgba(248,72,136,0.4)' }}><LockIcon size={90} /></div></div>
       <div style={{ position: 'absolute', top: 620, left: 80, right: 80, display: 'flex', flexDirection: 'column', gap: 28 }}>
         <div style={{ opacity: pL, transform: `translateX(${(1 - pL) * -120}px)`, display: 'flex', alignItems: 'center', gap: 20, padding: '26px 34px', borderRadius: 28, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}>
           <span style={{ fontFamily: font.bold, fontSize: 30, color: '#FDA4C4', width: 170 }}>ССЫЛКА</span>
@@ -202,7 +202,7 @@ const Business: React.FC = () => {
         <Chip start={tQr} fontSize={30}>QR-код в каждом заказе</Chip>
       </div>
       <div style={{ position: 'absolute', top: 930, left: 70, right: 70, opacity: springIn(f, 30, tClient - 4), transform: `translateY(${(1 - springIn(f, 30, tClient - 4)) * 60}px)` }}>
-        <div style={{ borderRadius: 30, background: '#0a0a0a', padding: '30px 36px', color: '#fff', boxShadow: '0 30px 80px rgba(0,0,0,0.25)' }}>
+        <div style={{ borderRadius: 30, background: '#0a0a0a', padding: '30px 36px', color: '#fff', boxShadow: '0 20px 34px rgba(0,0,0,0.25)' }}>
           <div style={{ fontFamily: font.caption, fontSize: 24, letterSpacing: 3, textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>Код для редактирования</div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
             <span style={{ fontFamily: font.mono, fontSize: 64, fontWeight: 700, letterSpacing: 10 }}>{DEMO_GIFT.editCode}</span>
@@ -214,7 +214,7 @@ const Business: React.FC = () => {
         {PLAN_ROWS.map((p, i) => {
           const sp = springIn(f, 30, 24 + i * 6);
           return (
-            <div key={p.name} style={{ opacity: sp, transform: `translateY(${(1 - sp) * 60}px)`, display: 'flex', alignItems: 'center', gap: 22, padding: '16px 26px', borderRadius: 22, background: p.dark ? '#0a0a0a' : 'rgba(255,255,255,0.9)', color: p.dark ? '#fff' : '#0a0a0a', boxShadow: '0 14px 40px rgba(0,0,0,0.10)', border: p.dark ? 'none' : '1px solid rgba(0,0,0,0.08)' }}>
+            <div key={p.name} style={{ opacity: sp, transform: `translateY(${(1 - sp) * 60}px)`, display: 'flex', alignItems: 'center', gap: 22, padding: '16px 26px', borderRadius: 22, background: p.dark ? '#0a0a0a' : 'rgba(255,255,255,0.9)', color: p.dark ? '#fff' : '#0a0a0a', boxShadow: '0 14px 34px rgba(0,0,0,0.10)', border: p.dark ? 'none' : '1px solid rgba(0,0,0,0.08)' }}>
               <span style={{ fontFamily: font.caption, fontWeight: 700, fontSize: 24, letterSpacing: 3, textTransform: 'uppercase', width: 150, opacity: 0.6 }}>{p.name}</span>
               <span style={{ fontFamily: font.bold, fontWeight: 700, fontSize: 40, width: 130 }}>{p.price}</span>
               <span style={{ fontFamily: font.caption, fontWeight: 600, fontSize: 26, opacity: 0.85 }}>{p.note}</span>
@@ -234,7 +234,7 @@ const End: React.FC = () => {
     <AbsoluteFill>
       <BrandBg />
       <div style={{ position: 'absolute', top: 600, left: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
-        <div style={{ background: '#fff', borderRadius: 40, padding: '40px 60px', transform: `scale(${l})`, boxShadow: '0 40px 100px rgba(0,0,0,0.25)' }}><Logo width={560} /></div>
+        <div style={{ background: '#fff', borderRadius: 40, padding: '40px 60px', transform: `scale(${l})`, boxShadow: '0 20px 34px rgba(0,0,0,0.25)' }}><Logo width={560} /></div>
         <div style={{ opacity: d, transform: `translateY(${(1 - d) * 40}px)`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
           <Domain size={96} />
           <div style={{ fontFamily: font.caption, fontWeight: 700, fontSize: 38, color: 'rgba(255,255,255,0.9)' }}>страница-подарок, которая останется</div>

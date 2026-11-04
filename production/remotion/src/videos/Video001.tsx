@@ -96,7 +96,7 @@ const Reveal: React.FC = () => {
       <AuroraBg speed={0.8} />
       <Stars count={60} seed={33} />
       <div style={{ position: 'absolute', top: 250, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `scale(${logo})`, opacity: logo }}>
-        <Logo width={520} style={{ filter: 'drop-shadow(0 0 40px rgba(248,72,136,0.35))' }} />
+        <Logo width={520} />
       </div>
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'flex-start', paddingTop: 440, transform: `translateY(${(1 - rise) * 700}px)` }}>
         <PhoneFrame scale={1.3} statusColor="#fff" glow="rgba(248,72,136,0.35)">
@@ -150,7 +150,7 @@ const End: React.FC = () => {
       <Stars count={70} seed={55} />
       <FloatingHearts count={12} start={0} colors={['#F84888', '#FDA4C4', '#C4B5FD']} />
       <div style={{ position: 'absolute', top: 560, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `scale(${logo})`, opacity: logo }}>
-        <Logo width={560} style={{ filter: 'drop-shadow(0 0 50px rgba(248,72,136,0.35))' }} />
+        <Logo width={560} />
       </div>
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'flex-start', paddingTop: 800, padding: '800px 100px 0' }}>
         <BigText text="Скажите это красиво." starts={wordStarts(S5).slice(0, 3)} fontSize={82} italic weight={400} />

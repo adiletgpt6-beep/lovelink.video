@@ -35,11 +35,11 @@ export const PinLockScreen: React.FC<Props> = ({ filled, state = 'locked', press
             style={{
               padding: '19.5px 15.6px', transform: `translateX(${Math.sin(shake * Math.PI * 4) * 7 * shake}px)`,
               background: 'linear-gradient(160deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.11) 30%, rgba(255,255,255,0.07) 70%, rgba(255,255,255,0.04) 100%)',
-              boxShadow: '0 36px 120px rgba(0,0,0,0.6)',
+              boxShadow: '0 20px 34px rgba(0,0,0,0.6)',
             }}
           >
             <div className="pointer-events-none absolute inset-px rounded-[25px] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.42),inset_0_10px_44px_rgba(0,0,0,0.22)]" />
-            <div className="pointer-events-none absolute -top-10 left-10 right-10 h-24 rounded-full bg-white/12 blur-2xl" />
+            <div className="pointer-events-none absolute -top-10 left-10 right-10 h-24 rounded-full" style={{ background: 'radial-gradient(ellipse closest-side, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 100%)' }} />
             <div className="relative" style={{ minHeight: 430 }}>
               <div className="text-center">
                 <div className="font-semibold tracking-wide text-white/95" style={{ fontSize: 17.2 }}>Введите пароль, чтобы увидеть подарок 🎁</div>
@@ -74,7 +74,7 @@ export const PinLockScreen: React.FC<Props> = ({ filled, state = 'locked', press
                           style={{
                             width: 70.2, height: 70.2, transform: `scale(${s})`,
                             background: isPressed ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.18)',
-                            boxShadow: '0 18px 40px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.18)', backdropFilter: 'blur(16px)',
+                            boxShadow: '0 18px 34px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.18)',
                           }}
                         >
                           <div className="pointer-events-none absolute" style={{ inset: '-40%', background: 'radial-gradient(circle at 30% 25%, rgba(255,255,255,0.46), rgba(255,255,255,0.1) 40%, rgba(255,255,255,0) 68%)', opacity: 0.9, transform: 'translateY(-6px)' }} />
@@ -85,7 +85,7 @@ export const PinLockScreen: React.FC<Props> = ({ filled, state = 'locked', press
                     })}
                   </div>
                   {/* CTA — the real button has only a screen-reader label */}
-                  <div className="relative w-full overflow-hidden rounded-2xl" style={{ height: 48, background: complete ? 'linear-gradient(90deg, #2aa7ff, #7b3dff, #ff4dcc)' : 'linear-gradient(90deg, rgba(42,167,255,0.26), rgba(123,61,255,0.2), rgba(255,77,204,0.16))', boxShadow: complete ? '0 18px 56px rgba(120,70,255,0.34), 0 0 48px rgba(255,77,204,0.12)' : '0 14px 46px rgba(120,70,255,0.14), 0 0 34px rgba(255,77,204,0.08)' }}>
+                  <div className="relative w-full overflow-hidden rounded-2xl" style={{ height: 48, background: complete ? 'linear-gradient(90deg, #2aa7ff, #7b3dff, #ff4dcc)' : 'linear-gradient(90deg, rgba(42,167,255,0.26), rgba(123,61,255,0.2), rgba(255,77,204,0.16))', boxShadow: complete ? '0 18px 34px rgba(120,70,255,0.34), 0 0 48px rgba(255,77,204,0.12)' : '0 14px 34px rgba(120,70,255,0.14), 0 0 34px rgba(255,77,204,0.08)' }}>
                     <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[13px] font-medium tracking-wide" style={{ opacity: complete ? 0.95 : 0.35 }}>Открыть подарок</span>
                   </div>
                 </div>
@@ -97,7 +97,7 @@ export const PinLockScreen: React.FC<Props> = ({ filled, state = 'locked', press
                     <div className="font-semibold tracking-wide" style={{ fontSize: 20.3 }}>Открыто! 🎉</div>
                     <div className="mt-2 text-white/65" style={{ fontSize: 12.9 }}>Подарок внутри</div>
                   </div>
-                  <div className="mt-6" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 22, padding: '18px 16px', boxShadow: '0 26px 80px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.18)', transform: `translateY(${(1 - sp) * 10}px) scale(${0.92 + 0.08 * sp})` }}>
+                  <div className="mt-6" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 22, padding: '18px 16px', boxShadow: '0 20px 34px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.18)', transform: `translateY(${(1 - sp) * 10}px) scale(${0.92 + 0.08 * sp})` }}>
                     <div className="flex items-start gap-3">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/18 bg-white/12"><span className="text-[18px]">{giftIcon}</span></div>
                       <div className="flex-1">

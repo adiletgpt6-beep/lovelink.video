@@ -14,7 +14,7 @@ const Check = () => <svg width="16" height="16" viewBox="0 0 18 18" fill="none" 
 export const PlanCard: React.FC<{ plan: typeof PLANS[number]; highlight?: number }> = ({ plan, highlight = 0 }) => {
   const dark = plan.dark;
   return (
-    <div className={dark ? 'relative overflow-hidden rounded-[28px] bg-neutral-950 p-5 shadow-[0_24px_64px_rgba(0,0,0,0.28)]' : 'relative rounded-[28px] border border-black/10 bg-white/85 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.06)]'} style={highlight ? { boxShadow: `0 0 0 ${3 * highlight}px rgba(120,80,240,0.8), 0 24px 64px rgba(120,80,240,0.3)` } : undefined}>
+    <div className={dark ? 'relative overflow-hidden rounded-[28px] bg-neutral-950 p-5 shadow-[0_20px_34px_rgba(0,0,0,0.28)]' : 'relative rounded-[28px] border border-black/10 bg-white/85 p-5 shadow-[0_18px_34px_rgba(0,0,0,0.06)]'} style={highlight ? { boxShadow: `0 0 0 ${3 * highlight}px rgba(120,80,240,0.8), 0 20px 34px rgba(120,80,240,0.3)` } : undefined}>
       {dark && <div className="pointer-events-none absolute inset-0 rounded-[28px]" style={{ background: 'radial-gradient(circle at 70% 0%, rgba(167,139,250,0.12) 0%, transparent 60%)' }} />}
       <div className="relative">
         {plan.badge && <div className="mb-3 flex gap-2"><span className={`inline-flex rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] ${dark ? 'bg-white/10 text-white/55' : 'bg-neutral-100 text-neutral-400'}`}>{plan.badge}</span></div>}

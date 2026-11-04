@@ -40,7 +40,7 @@ export const Bouquet: React.FC<{ width?: number; style?: React.CSSProperties; ch
 
 /** Small printed card with a QR (used inside the bouquet). */
 export const QrCard: React.FC<{ qr: string; width?: number; style?: React.CSSProperties; label?: string }> = ({ qr, width = 170, style, label = 'Отсканируй меня 🤍' }) => (
-  <div style={{ width, padding: width * 0.07, borderRadius: width * 0.1, background: '#fff', boxShadow: '0 16px 40px rgba(0,0,0,0.25)', textAlign: 'center', ...style }}>
+  <div style={{ width, padding: width * 0.07, borderRadius: width * 0.1, background: '#fff', boxShadow: '0 16px 34px rgba(0,0,0,0.25)', textAlign: 'center', ...style }}>
     <img src={qr} alt="QR" style={{ width: '100%', display: 'block', borderRadius: width * 0.05 }} />
     <div className="font-ui" style={{ marginTop: width * 0.05, fontSize: width * 0.085, fontWeight: 600, color: '#171717' }}>{label}</div>
     <div style={{ marginTop: width * 0.02, fontSize: width * 0.065, color: '#737373', letterSpacing: 1 }}>LoveLink</div>

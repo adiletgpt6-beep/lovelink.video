@@ -23,7 +23,7 @@ const tl = TL004;
 const [S0, S1, S2, S3, S4, S5] = tl.scenes;
 
 const Card: React.FC<{ children: React.ReactNode; style?: React.CSSProperties }> = ({ children, style }) => (
-  <div style={{ background: 'rgba(255,255,255,0.94)', borderRadius: 32, padding: '30px 36px', boxShadow: '0 30px 80px rgba(0,0,0,0.25)', fontFamily: font.caption, color: '#171717', ...style }}>{children}</div>
+  <div style={{ background: 'rgba(255,255,255,0.94)', borderRadius: 32, padding: '30px 36px', boxShadow: '0 20px 34px rgba(0,0,0,0.25)', fontFamily: font.caption, color: '#171717', ...style }}>{children}</div>
 );
 
 /* scene 0 — two cities */
@@ -198,7 +198,7 @@ const End: React.FC = () => {
         <BigText text="Эта страница останется у неё на годы." start={2} stagger={5} fontSize={84} weight={600} color="#171717" accentWords={['годы']} accentColor="#F84888" />
       </div>
       <div style={{ position: 'absolute', top: 900, left: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 34 }}>
-        <div style={{ transform: `scale(${l})`, opacity: l, background: '#fff', borderRadius: 40, padding: '34px 56px', boxShadow: '0 30px 80px rgba(248,72,136,0.2)' }}><Logo width={520} /></div>
+        <div style={{ transform: `scale(${l})`, opacity: l, background: '#fff', borderRadius: 40, padding: '34px 56px', boxShadow: '0 20px 34px rgba(248,72,136,0.2)' }}><Logo width={520} /></div>
         <div style={{ opacity: d, transform: `translateY(${(1 - d) * 40}px)`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
           <Domain size={92} gradient />
           <div style={{ fontFamily: font.caption, fontWeight: 700, fontSize: 36, color: '#404040' }}>создайте свою страницу-подарок</div>
