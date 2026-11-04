@@ -1,5 +1,17 @@
 {
  "ready": [
-  "L007-swirl"
+  "L006-bouquet",
+  "L006-rose",
+  "L007-bouquet",
+  "L007-rose",
+  "L007-swirl",
+  "L008-bouquet",
+  "L009-swirl",
+  "L010-box",
+  "L010-choc",
+  "L010-pendant",
+  "L010-roses",
+  "L010-teddy",
+  "LPetals"
  ]
 }

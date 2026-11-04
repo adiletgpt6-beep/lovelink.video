@@ -25,6 +25,8 @@ for id in $IDS; do
   printf "| %s | %s | %.1f с | %s | %s | %s | %s | %s dBFS |\n" "$id" "$size" "$dur" "$v" "$a" "$black" "${I:-?}" "${TP:-?}"
 done
 echo
-echo "Критерии: 1080×1920 (9:16), 30 fps, h264 yuv420p, aac; длительность 30–45 с; blackdetect (d≥0.3 с, порог 10 %) = 0; интегральная громкость около −16…−20 LUFS."
+echo "Критерии: 1080×1920 (9:16), 30 fps, h264 yuv420p, aac; blackdetect (d≥0.3 с, порог 10 %) = 0; интегральная громкость около −16…−20 LUFS."
+echo
+echo "Нормы длительности по брифу: VIDEO-001…005 — 30–45 с; VIDEO-006 — 35–45 с; VIDEO-007 — 25–35 с; VIDEO-008 — 30–40 с; VIDEO-009 — 25–35 с; VIDEO-010 — 30–40 с."
 } > "$REPORT"
 cat "$REPORT"
