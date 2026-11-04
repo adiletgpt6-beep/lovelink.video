@@ -89,12 +89,12 @@ export const Bokeh: React.FC<{ count?: number; seed?: number; colors?: string[];
 };
 
 /** Diagonal light sweep, like .lightSweep on the password page. */
-export const LightSweep: React.FC<{ period?: number; start?: number; width?: string }> = ({ period = 150, start = 0, width = '45%' }) => {
+export const LightSweep: React.FC<{ period?: number; start?: number; width?: string; opacity?: number }> = ({ period = 150, start = 0, width = '45%', opacity = 1 }) => {
   const frame = useCurrentFrame();
   const t = ((frame - start) % period) / period;
   if (frame < start) return null;
   const x = -120 + t * 340;
-  return <AbsoluteFill style={{ pointerEvents: 'none', overflow: 'hidden' }}><div style={{ position: 'absolute', top: '-30%', left: `${x}%`, width, height: '160%', transform: 'skewX(-18deg)', background: 'linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.14) 45%, transparent 85%)', opacity: t < 0.4 ? 1 : Math.max(0, 1 - (t - 0.4) / 0.2) }} /></AbsoluteFill>;
+  return <AbsoluteFill style={{ pointerEvents: 'none', overflow: 'hidden' }}><div style={{ position: 'absolute', top: '-30%', left: `${x}%`, width, height: '160%', transform: 'skewX(-18deg)', background: 'linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.14) 45%, transparent 85%)', opacity: opacity * (t < 0.4 ? 1 : Math.max(0, 1 - (t - 0.4) / 0.2)) }} /></AbsoluteFill>;
 };
 
 /** Emoji particle burst (the Four card reaction effect). */

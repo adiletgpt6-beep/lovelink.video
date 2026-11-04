@@ -53,7 +53,7 @@ const Hook: React.FC = () => {
       <div style={{ position: 'absolute', top: 1330, left: 0, right: 0, padding: '0 90px' }}>
         <BigText text={line2} starts={starts.slice(n1)} fontSize={52} weight={400} italic color="rgba(255,235,225,0.9)" lineHeight={1.2} accentWords={['несказанными']} accentColor="#FDA4C4" />
       </div>
-      <LightSweep period={240} start={40} width="30%" />
+      <LightSweep period={240} start={40} width="55%" opacity={0.45} />
     </AbsoluteFill>
   );
 };
@@ -123,7 +123,7 @@ const ScanType: React.FC = () => {
           {f < switchAt ? <ScanScreen t={f / 30} recognized={f >= recognizedAt} /> : <PinLockScreen filled={filled} state={f >= successAt ? 'success' : 'locked'} pressedKey={pressIdx >= 0 && pressIdx < 6 ? ['4', '8', '2', '9', '1', '3'][pressIdx] : null} pressAmt={pressAmt} successProgress={prog(f, successAt, 12)} giftIcon="💌" giftTitle="Семь лет — и я всё так же влюблён" giftText={<>Открой — внутри видео, наши фото и то, что я давно хотел сказать.</>} />}
         </PhoneFrame>
       </AbsoluteFill>
-      <div style={{ position: 'absolute', top: 1378, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 16 }}>
+      <div style={{ position: 'absolute', top: 150, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 16 }}>
         <Chip start={tScan} dark fontSize={30}>📷 сканирует QR</Chip>
         <Chip start={tType} dark fontSize={30}>🔢 вводит 6 цифр</Chip>
       </div>

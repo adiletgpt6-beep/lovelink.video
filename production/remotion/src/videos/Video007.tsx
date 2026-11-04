@@ -99,7 +99,7 @@ const Open: React.FC = () => {
         </PhoneFrame>
       </AbsoluteFill>
       <Layer3D id="L007-swirl" offset={100} opacity={0.5} />
-      <LightSweep period={180} start={10} width="28%" />
+      <LightSweep period={180} start={10} width="50%" opacity={0.5} />
     </AbsoluteFill>
   );
 };
