@@ -57,8 +57,8 @@ const Magic: React.FC = () => {
   const cardIn = springIn(f, 30, tCard, { damping: 14, stiffness: 70 });
   // camera pushes towards the QR after the card settles
   const push = prog(f, tQr - 4, 40);
-  const cardScale = 1.3 + push * 0.9;
-  const cardX = 540 - push * 230; const cardY = 820 - push * 60;
+  const cardScale = 1.3 + push * 0.55;
+  const cardX = 540 - push * 150; const cardY = 760 - push * 40;
   const phoneIn = springIn(f, 30, tPage - 4, { damping: 16, stiffness: 80 });
   const step = 6;
   const filled = f < tSix ? 0 : Math.min(6, Math.floor((f - tSix) / step) + 1);
@@ -74,8 +74,8 @@ const Magic: React.FC = () => {
       </div>
       {/* QR focus ring */}
       <div style={{ position: 'absolute', left: cardX - 300 * (cardScale / 1.3) * 0.68 + 90, top: cardY - 95, width: 0, height: 0, opacity: 0 }} />
-      <div style={{ position: 'absolute', right: 40, top: 760, transform: `translateY(${(1 - phoneIn) * 900}px) rotate(${(1 - phoneIn) * 10}deg)`, opacity: phoneIn }}>
-        <PhoneFrame scale={1.0} statusColor="#fff" glow="rgba(233,196,106,0.25)">
+      <div style={{ position: 'absolute', right: 60, top: 1000, transform: `translateY(${(1 - phoneIn) * 900}px) rotate(${(1 - phoneIn) * 10}deg)`, opacity: phoneIn }}>
+        <PhoneFrame scale={0.72} statusColor="#fff" glow="rgba(233,196,106,0.25)">
           <PinLockScreen filled={filled} pressedKey={pressIdx >= 0 && pressIdx < 6 ? ['4', '8', '2', '9', '1', '3'][pressIdx] : null} pressAmt={pressAmt} />
         </PhoneFrame>
       </div>
