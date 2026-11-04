@@ -149,6 +149,15 @@ LoveLink с QR-кодом (ведёт на `password.lovelink.my`) и **шест
 * Новые тексты подарков в `src/lib/content.ts`: `wifeGift`, `friendGift`, `clientGift`.
 * Музыка: `python3 scripts/music.py --new` (треки 006–010), `--all` — все десять.
 
+**Git: история ветки `ccr-90360352-qwt9c9`**
+* Коммиты `11cdd7b`…`bb75341` случайно включили PNG-последовательности `production/remotion/public/3d/` (≈280 MiB):
+  шаблон `.gitignore` `public/3d/` не совпадал с вложенным путём. В `f7999c9` файлы сняты с отслеживания и шаблон
+  исправлен (`production/remotion/public/3d/`), но блобы остались в истории ветки.
+* Чтобы убрать их до слияния в `main`, нужен перезапис истории и force-push (в этой сессии не выполнялся —
+  политика запрещает force-push без явного разрешения):
+  `git filter-branch -f --index-filter 'git rm -r -q --cached --ignore-unmatch production/remotion/public/3d' 8a861a0..HEAD && git push --force-with-lease origin ccr-90360352-qwt9c9`.
+  Альтернатива — слить ветку squash-ом, тогда блобы в `main` не попадут.
+
 **Как улучшить дальше (если появятся ресурсы)**
 * Съёмка/сток с людьми (флорист, получательница) — заменить сцены S3/S4 в VIDEO-006 и S2 в VIDEO-008 на реальные
   кадры (`<OffthreadVideo>`), остальная структура сохраняется.
